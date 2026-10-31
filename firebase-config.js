@@ -1,5 +1,4 @@
-// File ini JANGAN di-commit ke GitHub (sudah ada di .gitignore).
-// Isi apiKey dengan key BARU dari Google Cloud Console.
+Console.
 window.FIREBASE_CONFIG = {
   apiKey: "AIzaSyBGzUnuAo8aY8jkp_X0fa1XVTOimFbbAJs",
   authDomain: "de-a-d3ff4.firebaseapp.com",
