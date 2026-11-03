@@ -13,8 +13,6 @@
    - Pemangku Adat   : imganak/putra-pemangku-adat.jpg, imganak/putri-pemangku-adat.jpg
    - Kepala divisi   : imganak/[putra|putri]-[krani|juang|tekpram|giatpram|evambang].jpg
                        contoh: imganak/putra-krani.jpg
-   - Anggota divisi  : imganak/[putra|putri]-[krani|juang|tekpram|giatpram|evambang]-[1|2|3].jpg
-                       contoh: imganak/putri-tekpram-2.jpg
    Rasio foto ideal 3:4 (potret). Ukuran lain tetap rapi karena di-crop otomatis.
    Jika file belum ada, otomatis tampil placeholder abu-abu.
    Untuk mengganti NAMA dan JABATAN, edit daftar DATA di bagian script.
@@ -67,7 +65,6 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 /* Kepala divisi */
 .pcard.head{border-color:var(--primary);border-width:2px}
 .pcard.head .rl{font-weight:700;color:var(--primary-ink);background:var(--primary);display:inline-block;padding:2px 12px;border-radius:999px;margin:4px 0 6px}
-.col>.pcard.head{margin-bottom:14px}
 
 /* Baris atas: Pradana + Pemangku Adat */
 .top{--big:200px;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
@@ -82,8 +79,6 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 .col:first-child::before{left:50%}
 .col:last-child::before{right:50%}
 .col::after{content:"";position:absolute;top:0;left:50%;height:20px;border-left:2px solid var(--conn);transform:translateX(-1px)}
-.members{position:relative;display:flex;flex-direction:column;gap:14px}
-.members::before{content:"";position:absolute;left:50%;top:-14px;bottom:40px;border-left:2px solid var(--conn);transform:translateX(-1px)}
 
 /* Mobile: disusun vertikal */
 @media (max-width:760px){
@@ -95,9 +90,7 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
   .col{flex:none;width:100%;padding-top:22px}
   .col::before{display:none}
   .col::after{height:22px}
-  .col>.pcard.head{width:min(42vw,170px);margin:0 auto 12px}
-  .members{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .members::before{display:none}
+  .col>.pcard.head{width:min(42vw,170px);margin:0 auto}
   .pcard{padding:4px;border-radius:12px}
   .pcard .nm{font-size:11.5px}
   .pcard .rl{font-size:10.5px}
@@ -126,7 +119,7 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 
 <main class="wrap">
   <div class="hero">
-    <h1>Struktur Organisasi Dewan Ambalan Ir. Soetami – Laksamana Malahayati, Gudep [NOMOR GUDEP]</h1>
+    <h1>Struktur Organisasi Dewan Ambalan Ir. Soetami – Laksamana Malahayati, Gudep 11.01.10 071 - 11.01.10 072</h1>
   </div>
 
   <div class="tabs" role="tablist" aria-label="Pilih struktur">
@@ -147,8 +140,7 @@ var TEAMS={putra:"Putra",putri:"Putri"};
    Contoh:
    "putra-pradana":{n:"Budi Santoso"},
    "putra-krani":{n:"Andi Wijaya"},
-   "putra-krani-1":{n:"Rudi Hartono",j:"Sekretaris Krani"},
-   "putri-evambang-3":{n:"Siti Aminah",j:"Anggota"}
+   "putri-evambang":{n:"Siti Aminah"}
 */
 var DATA={
   // Pradana
@@ -203,11 +195,7 @@ function build(key){
   DIVISI.forEach(function(d){
     h+='<div class="col">'+
       pcard('imganak/'+key+'-'+d[0]+'.jpg','Foto '+d[1]+' '+label,d[1],false,true)+
-      '<div class="members">';
-    for(var i=1;i<=3;i++){
-      h+=pcard('imganak/'+key+'-'+d[0]+'-'+i+'.jpg','Foto anggota '+d[1]+' '+i+' '+label,'Jabatan Lorem Ipsum',false,false);
-    }
-    h+='</div></div>';
+    '</div>';
   });
   return h+'</div>';
 }
