@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Struktur Organisasi Dewan Ambalan Ir. Soetami – Laksamana Malahayati, Gudep 11.01.10 071 - 11.01.10 072</title>
+<style>
+/* ============================================================
+   CARA MENGGANTI FOTO
+   Taruh foto (.jpg) di folder imganak/ yang sejajar dengan file ini.
+   Nama file harus persis seperti berikut (huruf kecil):
+   - Pradana         : imganak/putra-pradana.jpg, imganak/putri-pradana.jpg
+   - Pemangku Adat   : imganak/putra-pemangku-adat.jpg, imganak/putri-pemangku-adat.jpg
+   - Anggota divisi  : imganak/[putra|putri]-[krani|juang|tekpram|giatpram|evambang]-[1|2|3].jpg
+                       contoh: imganak/putri-tekpram-2.jpg
+   Rasio foto ideal 3:4 (potret). Ukuran lain tetap rapi karena di-crop otomatis.
+   Jika file belum ada, otomatis tampil placeholder abu-abu.
+   ============================================================ */
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#FBF6F0;--card:#FFFFFF;--text:#3B2A1A;--muted:#8A7560;--line:#EADBC9;--primary:#EECAA6;--primary-ink:#4A2F17;--conn:#CDAA84;--ph:#D9D6D2;--ph-ink:#A09A93;--logo:#F5E4D0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1711;--card:#2A2018;--text:#F3E6D6;--muted:#B49F89;--line:#443428;--primary:#EECAA6;--primary-ink:#3A2410;--conn:#7A6150;--ph:#3C3834;--ph-ink:#7D766E;--logo:#3A2D21}}
+:root[data-theme="dark"]{--bg:#1E1711;--card:#2A2018;--text:#F3E6D6;--muted:#B49F89;--line:#443428;--primary:#EECAA6;--primary-ink:#3A2410;--conn:#7A6150;--ph:#3C3834;--ph-ink:#7D766E;--logo:#3A2D21}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+.wrap{max-width:1040px;margin:0 auto;padding:16px 14px 56px}
+
+/* Kapsul logo ala Dynamic Island (sama dengan index.html) */
+.logos{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:12px;margin:0;padding:8px 18px;
+  background:#14100C;border:1px solid rgba(255,255,255,.08);border-radius:999px;
+  box-shadow:0 6px 20px rgba(0,0,0,.28),0 1px 3px rgba(0,0,0,.2);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,gap .35s ease}
+.logos:hover{transform:translateX(-50%) scale(1.05);gap:14px;box-shadow:0 10px 28px rgba(0,0,0,.36),0 2px 6px rgba(0,0,0,.25)}
+.logo{flex:none;width:30px;height:30px;background:#F5E4D0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--muted)}
+.logo img{width:100%;height:100%;object-fit:contain;padding:3px;border-radius:50%}
+@media (prefers-reduced-motion:reduce){.logos{transition:none}}
+
+.topnav{max-width:1040px;margin:0 auto;padding:6px 14px 0;text-align:center}
+.topnav a{display:inline-block;font-size:13.5px;font-weight:600;color:var(--primary-ink);background:var(--primary);padding:7px 16px;border-radius:999px;text-decoration:none}
+.topnav a:hover{filter:brightness(.96)}
+
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:18px;padding:18px 18px 16px;margin-bottom:14px}
+.hero h1{margin:0;font-size:21px;line-height:1.25}
+
+/* Tab Putra / Putri */
+.tabs{display:flex;gap:8px;margin-bottom:18px}
+.tabs button{flex:1;font:inherit;font-size:14.5px;font-weight:700;padding:11px 8px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--muted);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tabs button[aria-selected="true"]{background:var(--primary);color:var(--primary-ink);border-color:var(--primary)}
+.tabs button:focus-visible{outline:2px solid var(--primary);outline-offset:2px}
+.panel[hidden]{display:none}
+
+/* Kartu orang */
+.pcard{position:relative;z-index:1;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:6px;text-align:center}
+.photo{position:relative;aspect-ratio:3/4;border-radius:10px;overflow:hidden;background:var(--ph)}
+.photo .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--ph-ink)}
+.photo .ph svg{width:55%;height:auto;fill:currentColor}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.pcard .nm{margin:8px 2px 0;font-weight:700;font-size:13px;line-height:1.25}
+.pcard .rl{margin:1px 2px 4px;font-size:12px;color:var(--muted)}
+.pcard.big .nm{font-size:16px}
+.pcard.big .rl{font-size:13.5px;font-weight:600;color:var(--primary-ink);background:var(--primary);display:inline-block;padding:2px 12px;border-radius:999px;margin:4px 0 6px}
+
+/* Baris atas: Pradana + Pemangku Adat */
+.top{--big:200px;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.top .pcard{width:var(--big);flex:none}
+.hlink{flex:none;width:56px;height:2px;background:var(--conn)}
+.top::after{content:"";position:absolute;left:50%;top:50%;bottom:-28px;border-left:2px solid var(--conn);transform:translateX(-1px)}
+
+/* Divisi */
+.divs{display:flex;justify-content:center;gap:14px}
+.col{position:relative;flex:0 1 150px;min-width:0;padding-top:20px}
+.col::before{content:"";position:absolute;top:0;left:-7px;right:-7px;border-top:2px solid var(--conn)}
+.col:first-child::before{left:50%}
+.col:last-child::before{right:50%}
+.col::after{content:"";position:absolute;top:0;left:50%;height:20px;border-left:2px solid var(--conn);transform:translateX(-1px)}
+.dtitle{display:block;text-align:center;background:var(--primary);color:var(--primary-ink);font-weight:700;font-size:14px;padding:8px 6px;border-radius:999px;margin-bottom:14px}
+.members{position:relative;display:flex;flex-direction:column;gap:14px}
+.members::before{content:"";position:absolute;left:50%;top:-14px;bottom:40px;border-left:2px solid var(--conn);transform:translateX(-1px)}
+
+/* Mobile: disusun vertikal */
+@media (max-width:760px){
+  .wrap{padding-bottom:40px}
+  .hero h1{font-size:18px}
+  .top{--big:min(42vw,170px)}
+  .hlink{width:24px}
+  .divs{flex-direction:column;align-items:stretch;gap:0}
+  .col{flex:none;width:100%;padding-top:22px}
+  .col::before{display:none}
+  .col::after{height:22px}
+  .members{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .members::before{display:none}
+  .pcard{padding:4px;border-radius:12px}
+  .pcard .nm{font-size:11.5px}
+  .pcard .rl{font-size:10.5px}
+  .pcard.big .nm{font-size:14px}
+}
+</style>
+</head>
+<body>
+
+<div class="logos" role="group" aria-label="Logo Dewan Ambalan">
+  <div class="logo">
+    <img src="img/logo1.png" alt="Logo 1">
+  </div>
+  <div class="logo">
+    <img src="img/logo2.png" alt="Logo 2">
+  </div>
+  <div class="logo">
+    <img src="img/logo3.png" alt="Logo 3">
+  </div>
+  <div class="logo">
+    <img src="img/logo4.png" alt="Logo 4">
+  </div>
+</div>
+
+<nav class="topnav" aria-label="Navigasi utama"><a href="index.html">← Kembali ke Absensi</a></nav>
+
+<main class="wrap">
+  <div class="hero">
+    <h1>Struktur Organisasi Dewan Ambalan Ir. Soetami – Laksamana Malahayati, Gudep [NOMOR GUDEP]</h1>
+  </div>
+
+  <div class="tabs" role="tablist" aria-label="Pilih struktur">
+    <button type="button" role="tab" id="tab-putra" aria-controls="panel-putra" aria-selected="true" data-k="putra">Putra (Ir. Soetami)</button>
+    <button type="button" role="tab" id="tab-putri" aria-controls="panel-putri" aria-selected="false" data-k="putri" tabindex="-1">Putri (Laksamana Malahayati)</button>
+  </div>
+
+  <section class="panel" id="panel-putra" role="tabpanel" aria-labelledby="tab-putra"></section>
+  <section class="panel" id="panel-putri" role="tabpanel" aria-labelledby="tab-putri" hidden></section>
+</main>
+
+<script>
+var DIVISI=[["krani","Krani"],["juang","Juang"],["tekpram","Tekpram"],["giatpram","Giatpram"],["evambang","Evambang"]];
+var TEAMS={putra:"Putra",putri:"Putri"};
+
+function silhouette(){
+  return '<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 22c0-5 3.8-8 8.5-8s8.5 3 8.5 8z"/></svg></span>';
+}
+function pcard(src,alt,role,big){
+  return '<div class="pcard'+(big?' big':'')+'"><div class="photo">'+silhouette()+
+    '<img src="'+src+'" alt="'+alt+'" loading="lazy" onerror="this.remove()"></div>'+
+    '<div class="nm">Nama Lorem Ipsum</div><div class="rl">'+role+'</div></div>';
+}
+function build(key){
+  var label=TEAMS[key];
+  var h='<div class="top">'+
+    pcard('imganak/'+key+'-pradana.jpg','Foto Pradana '+label,'Pradana',true)+
+    '<span class="hlink" aria-hidden="true"></span>'+
+    pcard('imganak/'+key+'-pemangku-adat.jpg','Foto Pemangku Adat '+label,'Pemangku Adat',true)+
+  '</div><div class="divs">';
+  DIVISI.forEach(function(d){
+    h+='<div class="col"><span class="dtitle">'+d[1]+'</span><div class="members">';
+    for(var i=1;i<=3;i++){
+      h+=pcard('imganak/'+key+'-'+d[0]+'-'+i+'.jpg','Foto anggota '+d[1]+' '+i+' '+label,'Jabatan Lorem Ipsum',false);
+    }
+    h+='</div></div>';
+  });
+  return h+'</div>';
+}
+document.getElementById("panel-putra").innerHTML=build("putra");
+document.getElementById("panel-putri").innerHTML=build("putri");
+
+var tabs=[].slice.call(document.querySelectorAll(".tabs button"));
+function setTab(k,focus){
+  tabs.forEach(function(b){
+    var on=b.getAttribute("data-k")===k;
+    b.setAttribute("aria-selected",on?"true":"false");
+    b.tabIndex=on?0:-1;
+    document.getElementById("panel-"+b.getAttribute("data-k")).hidden=!on;
+    if(on&&focus)b.focus();
+  });
+}
+tabs.forEach(function(b,i){
+  b.addEventListener("click",function(){setTab(b.getAttribute("data-k"))});
+  b.addEventListener("keydown",function(e){
+    if(e.key==="ArrowRight"||e.key==="ArrowLeft"){
+      e.preventDefault();
+      setTab(tabs[(i+1)%tabs.length].getAttribute("data-k"),true);
+    }
+  });
+});
+</script>
+</body>
+</html>

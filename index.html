@@ -12,22 +12,28 @@
 :root[data-theme="dark"]{--bg:#1E1711;--card:#2A2018;--text:#F3E6D6;--muted:#B49F89;--line:#443428;--primary:#EECAA6;--primary-ink:#3A2410;--hadir:#7FD39F;--hadir-bg:#1F3B2A;--izin:#F0C86A;--izin-bg:#41361A;--sakit:#F0988A;--sakit-bg:#4A2520;--logo:#3A2D21}
 *{box-sizing:border-box}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
 .wrap{max-width:720px;margin:0 auto;padding:16px 14px 96px}
 .auth-card{max-width:520px;margin:36px auto;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;text-align:center}
 .auth-card h2{margin:0 0 8px;font-size:20px}.auth-card p{color:var(--muted);font-size:14px}
 .auth-btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;background:var(--primary);color:var(--primary-ink);cursor:pointer}
 #app,#actionBar{display:none}#signout{font:inherit;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:var(--card);color:var(--text);cursor:pointer;margin-bottom:10px}
-.logos{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.logo{aspect-ratio:1;background:var(--logo);border:1.5px dashed var(--primary);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--muted)}
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 8px;
-  border-radius: 14px;
-}
-  
+
+/* Kapsul logo ala Dynamic Island */
+.logos{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;
+  display:flex;align-items:center;gap:12px;margin:0;padding:8px 18px;
+  background:#14100C;border:1px solid rgba(255,255,255,.08);border-radius:999px;
+  box-shadow:0 6px 20px rgba(0,0,0,.28),0 1px 3px rgba(0,0,0,.2);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,gap .35s ease}
+.logos:hover{transform:translateX(-50%) scale(1.05);gap:14px;box-shadow:0 10px 28px rgba(0,0,0,.36),0 2px 6px rgba(0,0,0,.25)}
+.logo{flex:none;width:30px;height:30px;background:#F5E4D0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--muted)}
+.logo img{width:100%;height:100%;object-fit:contain;padding:3px;border-radius:50%}
+@media (prefers-reduced-motion:reduce){.logos{transition:none}}
+
+.topnav{max-width:720px;margin:0 auto;padding:6px 14px 0;text-align:center}
+.topnav a{display:inline-block;font-size:13.5px;font-weight:600;color:var(--primary-ink);background:var(--primary);padding:7px 16px;border-radius:999px;text-decoration:none}
+.topnav a:hover{filter:brightness(.96)}
+
 .hero{background:var(--primary);color:var(--primary-ink);border-radius:18px;padding:18px 18px 16px;margin-bottom:14px}
 .hero h1{margin:0 0 2px;font-size:21px;line-height:1.2}
 .hero p{margin:0;font-size:14px;opacity:.8}
@@ -69,10 +75,8 @@ input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
 <script src="firebase-config.js"></script>
 </head>
 <body>
-<section class="auth-card" id="authCard"><h2>Absensi Rapat Dewan Ambalan</h2><p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p><button class="auth-btn" id="loginBtn">Login dengan Google</button><div class="status" id="authStatus" role="status"></div></section>
-<div class="wrap" id="app"><button id="signout">Keluar</button>
-  
-<div class="logos">
+
+<div class="logos" role="group" aria-label="Logo Dewan Ambalan">
   <div class="logo">
     <img src="img/logo1.png" alt="Logo 1">
   </div>
@@ -86,6 +90,11 @@ input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
     <img src="img/logo4.png" alt="Logo 4">
   </div>
 </div>
+
+<nav class="topnav" aria-label="Navigasi utama"><a href="struktur-organisasi.html">Struktur Organisasi →</a></nav>
+
+<section class="auth-card" id="authCard"><h2>Absensi Rapat Dewan Ambalan</h2><p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p><button class="auth-btn" id="loginBtn">Login dengan Google</button><div class="status" id="authStatus" role="status"></div></section>
+<div class="wrap" id="app"><button id="signout">Keluar</button>
 
   <div class="hero">
     <h1>Absensi Rapat Dewan Ambalan</h1>
