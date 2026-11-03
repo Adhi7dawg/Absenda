@@ -11,10 +11,13 @@
    Nama file harus persis seperti berikut (huruf kecil):
    - Pradana         : imganak/putra-pradana.jpg, imganak/putri-pradana.jpg
    - Pemangku Adat   : imganak/putra-pemangku-adat.jpg, imganak/putri-pemangku-adat.jpg
+   - Kepala divisi   : imganak/[putra|putri]-[krani|juang|tekpram|giatpram|evambang].jpg
+                       contoh: imganak/putra-krani.jpg
    - Anggota divisi  : imganak/[putra|putri]-[krani|juang|tekpram|giatpram|evambang]-[1|2|3].jpg
                        contoh: imganak/putri-tekpram-2.jpg
    Rasio foto ideal 3:4 (potret). Ukuran lain tetap rapi karena di-crop otomatis.
    Jika file belum ada, otomatis tampil placeholder abu-abu.
+   Untuk mengganti NAMA dan JABATAN, edit daftar DATA di bagian script.
    ============================================================ */
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#FBF6F0;--card:#FFFFFF;--text:#3B2A1A;--muted:#8A7560;--line:#EADBC9;--primary:#EECAA6;--primary-ink:#4A2F17;--conn:#CDAA84;--ph:#D9D6D2;--ph-ink:#A09A93;--logo:#F5E4D0}
@@ -61,6 +64,11 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 .pcard.big .nm{font-size:16px}
 .pcard.big .rl{font-size:13.5px;font-weight:600;color:var(--primary-ink);background:var(--primary);display:inline-block;padding:2px 12px;border-radius:999px;margin:4px 0 6px}
 
+/* Kepala divisi */
+.pcard.head{border-color:var(--primary);border-width:2px}
+.pcard.head .rl{font-weight:700;color:var(--primary-ink);background:var(--primary);display:inline-block;padding:2px 12px;border-radius:999px;margin:4px 0 6px}
+.col>.pcard.head{margin-bottom:14px}
+
 /* Baris atas: Pradana + Pemangku Adat */
 .top{--big:200px;position:relative;display:flex;align-items:center;justify-content:center;margin-bottom:28px}
 .top .pcard{width:var(--big);flex:none}
@@ -74,7 +82,6 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 .col:first-child::before{left:50%}
 .col:last-child::before{right:50%}
 .col::after{content:"";position:absolute;top:0;left:50%;height:20px;border-left:2px solid var(--conn);transform:translateX(-1px)}
-.dtitle{display:block;text-align:center;background:var(--primary);color:var(--primary-ink);font-weight:700;font-size:14px;padding:8px 6px;border-radius:999px;margin-bottom:14px}
 .members{position:relative;display:flex;flex-direction:column;gap:14px}
 .members::before{content:"";position:absolute;left:50%;top:-14px;bottom:40px;border-left:2px solid var(--conn);transform:translateX(-1px)}
 
@@ -88,6 +95,7 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
   .col{flex:none;width:100%;padding-top:22px}
   .col::before{display:none}
   .col::after{height:22px}
+  .col>.pcard.head{width:min(42vw,170px);margin:0 auto 12px}
   .members{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
   .members::before{display:none}
   .pcard{padding:4px;border-radius:12px}
@@ -134,25 +142,70 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 var DIVISI=[["krani","Krani"],["juang","Juang"],["tekpram","Tekpram"],["giatpram","Giatpram"],["evambang","Evambang"]];
 var TEAMS={putra:"Putra",putri:"Putri"};
 
+/* ISI NAMA & JABATAN DI SINI (n = nama, j = jabatan, keduanya boleh dikosongkan).
+   Kunci = nama file foto tanpa .jpg. Yang tidak diisi tampil "Nama Lorem Ipsum".
+   Contoh:
+   "putra-pradana":{n:"Budi Santoso"},
+   "putra-krani":{n:"Andi Wijaya"},
+   "putra-krani-1":{n:"Rudi Hartono",j:"Sekretaris Krani"},
+   "putri-evambang-3":{n:"Siti Aminah",j:"Anggota"}
+*/
+var DATA={
+  // Pradana
+  "putra-pradana": { n: "Atif Muhanif Mufid" },
+  "putri-pradana": { n: "Yunita Novianti" },
+
+  // Pemangku Adat
+  "putra-pemangku-adat": { n: "Diyan Pangestu" },
+  "putri-pemangku-adat": { n: "Hawa Nur Zahwa" },
+
+  // Krani
+  "putra-krani": { n: "Nur Adhi Sasongko" },
+  "putri-krani": { n: "Rosella Sabila Milati" },
+
+  // Juang
+  "putra-juang": { n: "Fahdi Lutfan Muhammad" },
+  "putri-juang": { n: "Seli Sasmita" },
+
+  // Tekpram
+  "putra-tekpram": { n: "Wahyu Riski Saputra" },
+  "putri-tekpram": { n: "Lyla Alit Kusumaningtiyas" },
+
+  // Giatpram
+  "putra-giatpram": { n: "Munadjam Ahmad" },
+  "putri-giatpram": { n: "Anisatun Ni'mah" },
+
+  // Evambang
+  "putra-evambang": { n: "Wahyu Riski Saputra" },
+  "putri-evambang": { n: "Cindi Anindia" }
+};
+
+
 function silhouette(){
   return '<span class="ph" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.2"/><path d="M3.5 22c0-5 3.8-8 8.5-8s8.5 3 8.5 8z"/></svg></span>';
 }
-function pcard(src,alt,role,big){
-  return '<div class="pcard'+(big?' big':'')+'"><div class="photo">'+silhouette()+
+function pcard(src,alt,role,big,head){
+  var id=src.replace('imganak/','').replace('.jpg','');
+  var d=DATA[id]||{};
+  var nama=d.n||'Nama Lorem Ipsum';
+  var jab=d.j||role;
+  return '<div class="pcard'+(big?' big':'')+(head?' head':'')+'"><div class="photo">'+silhouette()+
     '<img src="'+src+'" alt="'+alt+'" loading="lazy" onerror="this.remove()"></div>'+
-    '<div class="nm">Nama Lorem Ipsum</div><div class="rl">'+role+'</div></div>';
+    '<div class="nm">'+nama+'</div><div class="rl">'+jab+'</div></div>';
 }
 function build(key){
   var label=TEAMS[key];
   var h='<div class="top">'+
-    pcard('imganak/'+key+'-pradana.jpg','Foto Pradana '+label,'Pradana',true)+
+    pcard('imganak/'+key+'-pradana.jpg','Foto Pradana '+label,'Pradana',true,false)+
     '<span class="hlink" aria-hidden="true"></span>'+
-    pcard('imganak/'+key+'-pemangku-adat.jpg','Foto Pemangku Adat '+label,'Pemangku Adat',true)+
+    pcard('imganak/'+key+'-pemangku-adat.jpg','Foto Pemangku Adat '+label,'Pemangku Adat',true,false)+
   '</div><div class="divs">';
   DIVISI.forEach(function(d){
-    h+='<div class="col"><span class="dtitle">'+d[1]+'</span><div class="members">';
+    h+='<div class="col">'+
+      pcard('imganak/'+key+'-'+d[0]+'.jpg','Foto '+d[1]+' '+label,d[1],false,true)+
+      '<div class="members">';
     for(var i=1;i<=3;i++){
-      h+=pcard('imganak/'+key+'-'+d[0]+'-'+i+'.jpg','Foto anggota '+d[1]+' '+i+' '+label,'Jabatan Lorem Ipsum',false);
+      h+=pcard('imganak/'+key+'-'+d[0]+'-'+i+'.jpg','Foto anggota '+d[1]+' '+i+' '+label,'Jabatan Lorem Ipsum',false,false);
     }
     h+='</div></div>';
   });
