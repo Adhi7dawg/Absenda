@@ -17,6 +17,10 @@ body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-famil
 .auth-card{max-width:520px;margin:36px auto;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;text-align:center}
 .auth-card h2{margin:0 0 8px;font-size:20px}.auth-card p{color:var(--muted);font-size:14px}
 .auth-btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;background:var(--primary);color:var(--primary-ink);cursor:pointer}
+.auth-form{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);text-align:left}
+.auth-form .auth-sep{text-align:center;font-size:13px;color:var(--muted);margin-bottom:10px}
+.auth-form input[type=email],.auth-form input[type=password]{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:12px}
+.auth-form .auth-btn{width:100%}.auth-form .auth-btn:disabled{opacity:.55}
 #app,#actionBar{display:none}#signout{font:inherit;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:var(--card);color:var(--text);cursor:pointer;margin-bottom:10px}
 
 /* Kapsul logo ala Dynamic Island */
@@ -93,7 +97,7 @@ input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
 
 <nav class="topnav" aria-label="Navigasi utama"><a href="struktur-organisasi.html">Struktur Organisasi →</a></nav>
 
-<section class="auth-card" id="authCard"><h2>Absensi Rapat Dewan Ambalan</h2><p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p><button class="auth-btn" id="loginBtn">Login dengan Google</button><div class="status" id="authStatus" role="status"></div></section>
+<section class="auth-card" id="authCard"><h2>Absensi Rapat Dewan Ambalan</h2><p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p><button class="auth-btn" id="loginBtn">Login dengan Google</button><form class="auth-form" id="emailLoginForm" novalidate><div class="auth-sep">atau login dengan email</div><label class="lbl" for="loginEmail">Email</label><input type="email" id="loginEmail" autocomplete="username" required><label class="lbl" for="loginPassword">Password</label><input type="password" id="loginPassword" autocomplete="current-password" required><button class="auth-btn" type="submit" id="emailLoginBtn">Login dengan Email</button></form><div class="status" id="authStatus" role="status"></div></section>
 <div class="wrap" id="app"><button id="signout">Keluar</button>
 
   <div class="hero">
@@ -222,7 +226,28 @@ $("next").addEventListener("click",function(){var v=$("tgl").value||todayStr();$
 $("tgl").value=todayStr(); render();
 $("loginBtn").addEventListener("click",function(){ $("loginBtn").disabled=true; $("authStatus").textContent="Membuka login Google..."; auth.signInWithPopup(googleProvider).catch(function(err){ $("authStatus").textContent="Login gagal: "+(err.code||"coba lagi"); }).then(function(){ $("loginBtn").disabled=false; }); });
 $("signout").addEventListener("click",function(){auth.signOut().then(function(){showLogin("Kamu sudah keluar.")});});
-auth.onAuthStateChanged(function(user){ if(!user){showLogin("");return;} if((user.email||"").toLowerCase()!==ADMIN_EMAIL){auth.signOut().then(function(){showLogin("Akun ini tidak diizinkan. Login dengan "+ADMIN_EMAIL+".")});return;} showAuthorizedApp(); load(); });
+function emailLoginError(code){
+  if(code==="auth/too-many-requests")return "Terlalu banyak percobaan login. Tunggu beberapa saat lalu coba lagi.";
+  if(code==="auth/network-request-failed")return "Koneksi bermasalah. Periksa internet lalu coba lagi.";
+  if(code==="auth/operation-not-allowed")return "Login email belum diaktifkan. Hubungi pengelola.";
+  return "Email atau password salah.";
+}
+$("emailLoginForm").addEventListener("submit",function(e){
+  e.preventDefault();
+  var email=$("loginEmail").value.trim(), pass=$("loginPassword").value;
+  if(!email||!pass){ $("authStatus").textContent="Isi email dan password."; return; }
+  $("emailLoginBtn").disabled=true; $("authStatus").textContent="Sedang login...";
+  auth.signInWithEmailAndPassword(email,pass).catch(function(err){ $("authStatus").textContent=emailLoginError(err&&err.code); }).then(function(){ $("loginPassword").value=""; $("emailLoginBtn").disabled=false; });
+});
+// Akses akun email/password ditentukan oleh Firestore Security Rules (sisi server): baca uji ke koleksi "rapat".
+function checkPasswordAccess(){
+  $("authStatus").textContent="Memeriksa akses...";
+  db.doc("rapat/"+todayStr()).get().then(function(){ showAuthorizedApp(); load(); }).catch(function(err){
+    var msg=err&&err.code==="permission-denied"?"Akun ini tidak diizinkan mengakses absensi.":"Gagal memeriksa akses. Coba lagi.";
+    auth.signOut().then(function(){showLogin(msg)});
+  });
+}
+auth.onAuthStateChanged(function(user){ if(!user){showLogin("");return;} if(user.providerData.some(function(p){return p.providerId==="password"})&&!user.providerData.some(function(p){return p.providerId==="google.com"})){checkPasswordAccess();return;} if((user.email||"").toLowerCase()!==ADMIN_EMAIL){auth.signOut().then(function(){showLogin("Akun ini tidak diizinkan. Login dengan "+ADMIN_EMAIL+".")});return;} showAuthorizedApp(); load(); });
 </script>
 </body>
 </html>
