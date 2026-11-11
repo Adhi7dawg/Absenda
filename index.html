@@ -5,278 +5,68 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Absensi Rapat Dewan Ambalan</title>
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---bg:#FBF6F0;--card:#FFFFFF;--text:#3B2A1A;--muted:#8A7560;--line:#EADBC9;--primary:#EECAA6;--primary-ink:#4A2F17;
---hadir:#2E7D4F;--hadir-bg:#DDF0E3;--izin:#9A6A00;--izin-bg:#FBEDC4;--sakit:#B3412F;--sakit-bg:#F9DCD6;--logo:#F5E4D0}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1711;--card:#2A2018;--text:#F3E6D6;--muted:#B49F89;--line:#43342800;--line:#443428;--primary:#EECAA6;--primary-ink:#3A2410;--hadir:#7FD39F;--hadir-bg:#1F3B2A;--izin:#F0C86A;--izin-bg:#41361A;--sakit:#F0988A;--sakit-bg:#4A2520;--logo:#3A2D21}}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#FBF6F0;--card:#FFFFFF;--text:#3B2A1A;--muted:#8A7560;--line:#EADBC9;--primary:#EECAA6;--primary-ink:#4A2F17;--hadir:#2E7D4F;--hadir-bg:#DDF0E3;--izin:#9A6A00;--izin-bg:#FBEDC4;--sakit:#B3412F;--sakit-bg:#F9DCD6;--logo:#F5E4D0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1E1711;--card:#2A2018;--text:#F3E6D6;--muted:#B49F89;--line:#443428;--primary:#EECAA6;--primary-ink:#3A2410;--hadir:#7FD39F;--hadir-bg:#1F3B2A;--izin:#F0C86A;--izin-bg:#41361A;--sakit:#F0988A;--sakit-bg:#4A2520;--logo:#3A2D21}}
 :root[data-theme="dark"]{--bg:#1E1711;--card:#2A2018;--text:#F3E6D6;--muted:#B49F89;--line:#443428;--primary:#EECAA6;--primary-ink:#3A2410;--hadir:#7FD39F;--hadir-bg:#1F3B2A;--izin:#F0C86A;--izin-bg:#41361A;--sakit:#F0988A;--sakit-bg:#4A2520;--logo:#3A2D21}
-*{box-sizing:border-box}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;padding-top:66px;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
-.wrap{max-width:720px;margin:0 auto;padding:16px 14px 96px}
-.auth-card{max-width:520px;margin:36px auto;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;text-align:center}
-.auth-card h2{margin:0 0 8px;font-size:20px}.auth-card p{color:var(--muted);font-size:14px}
-.auth-btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;background:var(--primary);color:var(--primary-ink);cursor:pointer}
-.auth-form{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);text-align:left}
-.auth-form .auth-sep{text-align:center;font-size:13px;color:var(--muted);margin-bottom:10px}
-.auth-form input[type=email],.auth-form input[type=password]{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:12px}
-.auth-form .auth-btn{width:100%}.auth-form .auth-btn:disabled{opacity:.55}
-#app,#actionBar{display:none}#signout{font:inherit;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:var(--card);color:var(--text);cursor:pointer;margin-bottom:10px}
-
-/* Kapsul logo ala Dynamic Island */
-.logos{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;
-  display:flex;align-items:center;gap:12px;margin:0;padding:8px 18px;
-  background:#14100C;border:1px solid rgba(255,255,255,.08);border-radius:999px;
-  box-shadow:0 6px 20px rgba(0,0,0,.28),0 1px 3px rgba(0,0,0,.2);
-  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,gap .35s ease}
-.logos:hover{transform:translateX(-50%) scale(1.05);gap:14px;box-shadow:0 10px 28px rgba(0,0,0,.36),0 2px 6px rgba(0,0,0,.25)}
-.logo{flex:none;width:30px;height:30px;background:#F5E4D0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--muted)}
-.logo img{width:100%;height:100%;object-fit:contain;padding:3px;border-radius:50%}
+.wrap{max-width:720px;margin:0 auto;padding:16px 14px 96px}.auth-card{max-width:520px;margin:36px auto;padding:22px;background:var(--card);border:1px solid var(--line);border-radius:16px;text-align:center}
+.auth-card h2{margin:0 0 8px;font-size:20px}.auth-card p{color:var(--muted);font-size:14px}.auth-btn{font:inherit;font-weight:700;border:0;border-radius:12px;padding:12px 16px;background:var(--primary);color:var(--primary-ink);cursor:pointer}
+.auth-form{margin-top:18px;padding-top:16px;border-top:1px solid var(--line);text-align:left}.auth-form .auth-sep{text-align:center;font-size:13px;color:var(--muted);margin-bottom:10px}
+.auth-form input[type=email],.auth-form input[type=password],.auth-form input[type=text]{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:12px}
+.password-wrap{position:relative}.password-wrap input{padding-right:82px!important}.password-toggle{position:absolute;right:8px;top:50%;transform:translateY(-50%);margin-top:-6px;border:0;background:transparent;color:var(--muted);font:inherit;font-size:13px;font-weight:600;cursor:pointer;padding:6px}
+.auth-form .auth-btn{width:100%}.auth-form .auth-btn:disabled{opacity:.55}#app,#actionBar{display:none}
+#signout{font:inherit;border:1px solid var(--line);border-radius:9px;padding:7px 10px;background:var(--card);color:var(--text);cursor:pointer;margin-bottom:10px}
+.logos{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:50;display:flex;align-items:center;gap:12px;margin:0;padding:8px 18px;background:#14100C;border:1px solid rgba(255,255,255,.08);border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.28),0 1px 3px rgba(0,0,0,.2);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,gap .35s ease}
+.logos:hover{transform:translateX(-50%) scale(1.05);gap:14px;box-shadow:0 10px 28px rgba(0,0,0,.36),0 2px 6px rgba(0,0,0,.25)}.logo{flex:none;width:30px;height:30px;background:#F5E4D0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--muted)}.logo img{width:100%;height:100%;object-fit:contain;padding:3px;border-radius:50%}
 @media (prefers-reduced-motion:reduce){.logos{transition:none}}
-
-.topnav{max-width:720px;margin:0 auto;padding:6px 14px 0;text-align:center}
-.topnav a{display:inline-block;font-size:13.5px;font-weight:600;color:var(--primary-ink);background:var(--primary);padding:7px 16px;border-radius:999px;text-decoration:none}
-.topnav a:hover{filter:brightness(.96)}
-
-.hero{background:var(--primary);color:var(--primary-ink);border-radius:18px;padding:18px 18px 16px;margin-bottom:14px}
-.hero h1{margin:0 0 2px;font-size:21px;line-height:1.2}
-.hero p{margin:0;font-size:14px;opacity:.8}
-.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
-label.lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
-.daterow{display:flex;gap:8px;align-items:center}
-input[type=date],input[type=text]{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
-input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
-.nav{flex:none;width:42px;height:42px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-size:18px;cursor:pointer}
-.nav:active{background:var(--primary);color:var(--primary-ink)}
-.status{font-size:12.5px;margin-top:8px;color:var(--muted);min-height:18px}
-.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
-.summary div{border-radius:12px;padding:8px 2px;background:var(--bg);border:1px solid var(--line)}
-.summary b{display:block;font-size:20px}
-.summary span{font-size:11.5px;color:var(--muted)}
-.row{padding:12px 0;border-bottom:1px solid var(--line)}
-.row:last-child{border-bottom:0}
-.who{display:flex;gap:10px;align-items:center;margin-bottom:9px}
-.num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--primary);color:var(--primary-ink);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
-.name{font-weight:600;font-size:15px}
-.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
-.seg button{font:inherit;font-size:14px;font-weight:600;padding:9px 4px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer}
-.seg button.on[data-s=hadir]{background:var(--hadir-bg);color:var(--hadir);border-color:var(--hadir)}
-.seg button.on[data-s=izin]{background:var(--izin-bg);color:var(--izin);border-color:var(--izin)}
-.seg button.on[data-s=sakit]{background:var(--sakit-bg);color:var(--sakit);border-color:var(--sakit)}
-.reason{margin-top:8px}
-.reason label{font-size:12.5px;color:var(--izin);font-weight:600;display:block;margin-bottom:4px}
-.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}
-.bar .in{max-width:720px;margin:0 auto;display:flex;gap:8px}
-.btn{flex:1;font:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:12px;border:0;cursor:pointer;background:var(--primary);color:var(--primary-ink)}
-.btn.sec{flex:none;background:var(--card);color:var(--text);border:1.5px solid var(--line);padding:13px 16px}
-.btn:disabled{opacity:.55}
-.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--primary-ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
-.toast.show{opacity:1}
-
-.skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg, rgba(218,204,190,.85) 25%, rgba(255,255,255,.85) 50%, rgba(218,204,190,.85) 75%);background-size:200% 100%;animation:skeletonShimmer 1.2s infinite linear;border-radius:10px}
-.skeleton-row .skeleton-num{width:28px;height:28px;border-radius:50%}
-.skeleton-row .skeleton-name{display:block;height:16px;width:60%;margin-top:2px}
-.skeleton-row .skeleton-pill{display:block;height:36px;border-radius:10px}
-.skeleton-summary .skeleton-box{display:block;height:50px;border-radius:12px}
-@keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.topnav{max-width:720px;margin:0 auto;padding:6px 14px 0;text-align:center}.topnav a{display:inline-block;font-size:13.5px;font-weight:600;color:var(--primary-ink);background:var(--primary);padding:7px 16px;border-radius:999px;text-decoration:none}.topnav a:hover{filter:brightness(.96)}
+.hero{background:var(--primary);color:var(--primary-ink);border-radius:18px;padding:18px 18px 16px;margin-bottom:14px}.hero h1{margin:0 0 2px;font-size:21px;line-height:1.2}.hero p{margin:0;font-size:14px;opacity:.8}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}label.lbl{display:block;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.daterow{display:flex;gap:8px;align-items:center}input[type=date],input[type=text]{width:100%;font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
+.nav{flex:none;width:42px;height:42px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--text);font-size:18px;cursor:pointer}.nav:active{background:var(--primary);color:var(--primary-ink)}
+.status{font-size:12.5px;margin-top:8px;color:var(--muted);min-height:18px}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}.summary div{border-radius:12px;padding:8px 2px;background:var(--bg);border:1px solid var(--line)}.summary b{display:block;font-size:20px}.summary span{font-size:11.5px;color:var(--muted)}
+.row{padding:12px 0;border-bottom:1px solid var(--line)}.row:last-child{border-bottom:0}.who{display:flex;gap:10px;align-items:center;margin-bottom:9px}.num{flex:none;width:28px;height:28px;border-radius:50%;background:var(--primary);color:var(--primary-ink);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}.name{font-weight:600;font-size:15px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.seg button{font:inherit;font-size:14px;font-weight:600;padding:9px 4px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);cursor:pointer}.seg button.on[data-s=hadir]{background:var(--hadir-bg);color:var(--hadir);border-color:var(--hadir)}.seg button.on[data-s=izin]{background:var(--izin-bg);color:var(--izin);border-color:var(--izin)}.seg button.on[data-s=sakit]{background:var(--sakit-bg);color:var(--sakit);border-color:var(--sakit)}
+.reason{margin-top:8px}.reason label{font-size:12.5px;color:var(--izin);font-weight:600;display:block;margin-bottom:4px}.bar{position:fixed;left:0;right:0;bottom:0;padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line)}.bar .in{max-width:720px;margin:0 auto;display:flex;gap:8px}
+.btn{flex:1;font:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:12px;border:0;cursor:pointer;background:var(--primary);color:var(--primary-ink)}.btn.sec{flex:none;background:var(--card);color:var(--text);border:1.5px solid var(--line);padding:13px 16px}.btn:disabled{opacity:.55}
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--primary-ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}.toast.show{opacity:1}
+.skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg,rgba(218,204,190,.85) 25%,rgba(255,255,255,.85) 50%,rgba(218,204,190,.85) 75%);background-size:200% 100%;animation:skeletonShimmer 1.2s infinite linear;border-radius:10px}.skeleton-row .skeleton-num{width:28px;height:28px;border-radius:50%}.skeleton-row .skeleton-name{display:block;height:16px;width:60%;margin-top:2px}.skeleton-row .skeleton-pill{display:block;height:36px;border-radius:10px}.skeleton-summary .skeleton-box{display:block;height:50px;border-radius:12px}@keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
-<script src="firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script src="firebase-config.js"></script>
 </head>
 <body>
-
-<div class="logos" role="group" aria-label="Logo Dewan Ambalan">
-  <div class="logo">
-    <img src="img/logo1.png" alt="Logo 1">
-  </div>
-  <div class="logo">
-    <img src="img/logo2.png" alt="Logo 2">
-  </div>
-  <div class="logo">
-    <img src="img/logo3.png" alt="Logo 3">
-  </div>
-  <div class="logo">
-    <img src="img/logo4.png" alt="Logo 4">
-  </div>
-</div>
-
+<div class="logos" role="group" aria-label="Logo Dewan Ambalan"><div class="logo"><img src="img/logo1.png" alt="Logo 1"></div><div class="logo"><img src="img/logo2.png" alt="Logo 2"></div><div class="logo"><img src="img/logo3.png" alt="Logo 3"></div><div class="logo"><img src="img/logo4.png" alt="Logo 4"></div></div>
 <nav class="topnav" aria-label="Navigasi utama"><a href="struktur-organisasi.html">Struktur Organisasi →</a></nav>
-
-<section class="auth-card" id="authCard"><h2>Absensi Rapat Dewan Ambalan</h2><p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p><button class="auth-btn" id="loginBtn">Login dengan Google</button><form class="auth-form" id="emailLoginForm" novalidate><div class="auth-sep">atau login dengan email</div><label class="lbl" for="loginEmail">Email</label><input type="email" id="loginEmail" autocomplete="username" required><label class="lbl" for="loginPassword">Password</label><input type="password" id="loginPassword" autocomplete="current-password" required><button class="auth-btn" type="submit" id="emailLoginBtn">Login dengan Email</button></form><div class="status" id="authStatus" role="status"></div></section>
-<div class="wrap" id="app"><button id="signout">Keluar</button>
-
-  <div class="hero">
-    <h1>Absensi Rapat Dewan Ambalan</h1>
-    <p>Daftar hadir Dewan Ambalan.</p>
-  </div>
-
-  <div class="card">
-    <label class="lbl" for="tgl">Tanggal rapat</label>
-    <div class="daterow">
-      <button class="nav" id="prev" aria-label="Hari sebelumnya">‹</button>
-      <input type="date" id="tgl">
-      <button class="nav" id="next" aria-label="Hari berikutnya">›</button>
-    </div>
-    <div class="status" id="status"></div>
-  </div>
-
-  <div class="card summary" id="summary"></div>
-  <div class="card" id="list"></div>
-</div>
-
-<div class="bar" id="actionBar"><div class="in">
-  <button class="btn sec" id="reset">Reset</button>
-  <button class="btn" id="save">Simpan absensi</button>
-</div></div>
-<div class="toast" id="toast"></div>
-
+<section class="auth-card" id="authCard"><h2>Absensi Rapat Dewan Ambalan</h2><p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p><button class="auth-btn" id="loginBtn">Login dengan Google</button><form class="auth-form" id="emailLoginForm" novalidate><div class="auth-sep">atau login dengan email</div><label class="lbl" for="loginEmail">Email</label><input type="email" id="loginEmail" autocomplete="username" required><label class="lbl" for="loginPassword">Password</label><div class="password-wrap"><input type="password" id="loginPassword" autocomplete="current-password" required><button class="password-toggle" id="togglePassword" type="button" aria-label="Tampilkan password" aria-pressed="false">Tampilkan</button></div><button class="auth-btn" type="submit" id="emailLoginBtn">Login dengan Email</button></form><div class="status" id="authStatus" role="status"></div></section>
+<div class="wrap" id="app"><button id="signout">Keluar</button><div class="hero"><h1>Absensi Rapat Dewan Ambalan</h1><p>Daftar hadir Dewan Ambalan.</p></div>
+<div class="card"><label class="lbl" for="tgl">Tanggal rapat</label><div class="daterow"><button class="nav" id="prev" aria-label="Hari sebelumnya">‹</button><input type="date" id="tgl"><button class="nav" id="next" aria-label="Hari berikutnya">›</button></div><div class="status" id="status"></div></div>
+<div class="card summary" id="summary"></div><div class="card" id="list"></div></div>
+<div class="bar" id="actionBar"><div class="in"><button class="btn sec" id="reset">Reset</button><button class="btn" id="save">Simpan absensi</button></div></div><div class="toast" id="toast"></div>
 <script>
 var NAMES=["Atif Muhanif Mufid","Anisatun Ni'mah","Cindi Anindia","Diyan Pangestu","Fahdi Luftan Muhammad","Hawa Nur Zahwa","Lyla Alit K.","Munadjam A.","May Rahmawati","Nur Adhi Sasongko","Niken Intantri","Nila Juju","Rosella Sabila M.","Seli Sasmita","Vannesa Putri Enjelita","Wahyu Riski S.","Yunita Novianti"];
-var state={}, db=null, saving=false, dbReady=false, ADMIN_EMAIL="xnoob4321@gmail.com", isLoading=false;
-firebase.initializeApp(window.FIREBASE_CONFIG);
-var auth=firebase.auth(), googleProvider=new firebase.auth.GoogleAuthProvider(); db=firebase.firestore();
-function showAuthorizedApp(){ $("authCard").style.display="none"; $("app").style.display="block"; $("actionBar").style.display="block"; }
-function showLogin(message){ $("authCard").style.display="block"; $("app").style.display="none"; $("actionBar").style.display="none"; $("authStatus").textContent=message||""; }
-
+var state={},db=null,saving=false,ADMIN_EMAIL="xnoob4321@gmail.com",isLoading=false;
+firebase.initializeApp(window.FIREBASE_CONFIG);var auth=firebase.auth(),googleProvider=new firebase.auth.GoogleAuthProvider();db=firebase.firestore();
 function $(id){return document.getElementById(id)}
-function pad(n){return n<10?"0"+n:""+n}
-function todayStr(){var d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
-function shift(str,delta){var p=str.split("-");var d=new Date(+p[0],+p[1]-1,+p[2]+delta);return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}
-function nice(str){var p=str.split("-");return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}
-function toast(t){var e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove("show")},2200)}
-function setStatus(t){$("status").textContent=t}
-
-function renderLoading(){
-  isLoading=true;
-  $("summary").innerHTML =
-   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'+ 
-   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'+ 
-   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'+ 
-   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>';
-  var rows='';
-  for(var i=0;i<6;i++){
-    rows+='<div class="row skeleton-row"><div class="who"><div class="skeleton skeleton-num"></div><div class="skeleton skeleton-name"></div></div><div class="seg">'+
-      '<span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span>'+
-      '</div></div>';
-  }
-  $("list").innerHTML=rows;
-}
-
-function render(){
-  if(isLoading){renderLoading();return}
-  var h="";
-  NAMES.forEach(function(n,i){
-    var v=state[i]||{};
-    h+='<div class="row"><div class="who"><div class="num">'+(i+1)+'</div><div class="name">'+n+'</div></div><div class="seg">';
-    ["hadir","izin","sakit"].forEach(function(s){
-      h+='<button data-i="'+i+'" data-s="'+s+'" class="'+(v.s===s?"on":"")+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</button>';
-    });
-    h+='</div>';
-    if(v.s==="izin"){
-      h+='<div class="reason"><label for="r'+i+'">Izin kemana / alasan</label><input type="text" id="r'+i+'" data-r="'+i+'" placeholder="Ketik alasan izin..." value="'+esc(v.r||"")+'"></div>';
-    }
-    h+='</div>';
-  });
-  $("list").innerHTML=h;
-  summary();
-}
+function showAuthorizedApp(){$("authCard").style.display="none";$ ("app").style.display="block";$("actionBar").style.display="block"}
+function showLogin(message){$("authCard").style.display="block";$("app").style.display="none";$("actionBar").style.display="none";$("authStatus").textContent=message||""}
+function pad(n){return n<10?"0"+n:""+n}function todayStr(){var d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}function shift(str,delta){var p=str.split("-"),d=new Date(+p[0],+p[1]-1,+p[2]+delta);return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}function nice(str){var p=str.split("-");return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}
+function toast(t){var e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove("show")},2200)}function setStatus(t){$("status").textContent=t}
+function renderLoading(){isLoading=true;$("summary").innerHTML='<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'.repeat(4);var rows="";for(var i=0;i<6;i++)rows+='<div class="row skeleton-row"><div class="who"><div class="skeleton skeleton-num"></div><div class="skeleton skeleton-name"></div></div><div class="seg"><span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span></div></div>';$("list").innerHTML=rows}
+function render(){if(isLoading){renderLoading();return}var h="";NAMES.forEach(function(n,i){var v=state[i]||{};h+='<div class="row"><div class="who"><div class="num">'+(i+1)+'</div><div class="name">'+n+'</div></div><div class="seg">';["hadir","izin","sakit"].forEach(function(s){h+='<button data-i="'+i+'" data-s="'+s+'" class="'+(v.s===s?"on":"")+'">'+s.charAt(0).toUpperCase()+s.slice(1)+'</button>'});h+='</div>';if(v.s==="izin")h+='<div class="reason"><label for="r'+i+'">Izin kemana / alasan</label><input type="text" id="r'+i+'" data-r="'+i+'" placeholder="Ketik alasan izin..." value="'+esc(v.r||"")+'"></div>';h+='</div>'});$("list").innerHTML=h;summary()}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;")}
-function summary(){
-  var c={hadir:0,izin:0,sakit:0};
-  for(var k in state){if(state[k].s)c[state[k].s]++}
-  var belum=NAMES.length-c.hadir-c.izin-c.sakit;
-  $("summary").innerHTML=
-   '<div><b style="color:var(--hadir)">'+c.hadir+'</b><span>Hadir</span></div>'+
-   '<div><b style="color:var(--izin)">'+c.izin+'</b><span>Izin</span></div>'+
-   '<div><b style="color:var(--sakit)">'+c.sakit+'</b><span>Sakit</span></div>'+
-   '<div><b>'+belum+'</b><span>Belum</span></div>';
-}
-
-$("list").addEventListener("click",function(e){
-  var b=e.target.closest("button[data-s]");if(!b)return;
-  var i=b.getAttribute("data-i"),s=b.getAttribute("data-s");
-  var cur=state[i]||{};
-  state[i]={s:s,r:s==="izin"?(cur.r||""):""};
-  render();
-  if(s==="izin"){var f=$("r"+i);if(f)f.focus()}
-});
-$("list").addEventListener("input",function(e){
-  var i=e.target.getAttribute("data-r");
-  if(i!==null){state[i].r=e.target.value}
-});
-
-function load(){
-  var d=$("tgl").value;
-  state={};
-  isLoading=true;
-  renderLoading();
-  if(!d){isLoading=false;render();setStatus("Pilih tanggal dulu.");return}
-  if(!db){isLoading=false;render();setStatus(nice(d)+" · database belum tersambung (data tidak tersimpan)");return}
-  setStatus("Memuat data "+nice(d)+"...");
-  db.doc("rapat/"+d).get().then(function(snap){
-    if($("tgl").value!==d)return;
-    if(snap.exists){
-      var data=snap.data()||{};var rec=data.records||{};
-      for(var k in rec){state[k]={s:rec[k].s,r:rec[k].r||""}}
-      isLoading=false;
-      render();
-      setStatus("Sudah tersimpan untuk "+nice(d)+(data.savedAt?" · terakhir "+new Date(data.savedAt).toLocaleString("id-ID"):""));
-    }else{
-      isLoading=false;
-      render();
-      setStatus("Belum ada absensi untuk "+nice(d));
-    }
-  }).catch(function(){isLoading=false;render();setStatus("Gagal memuat data. Coba ganti tanggal lagi.")});
-}
-
-$("save").addEventListener("click",function(){
-  var d=$("tgl").value;
-  if(!d){toast("Pilih tanggal dulu");return}
-  var belum=NAMES.length-Object.keys(state).filter(function(k){return state[k].s}).length;
-  if(belum>0){toast(belum+" orang belum diisi");return}
-  for(var k in state){if(state[k].s==="izin"&&!(state[k].r||"").trim()){toast("Isi alasan izin untuk "+NAMES[k]);return}}
-  if(!db){toast("Database belum tersambung");return}
-  if(saving)return;saving=true;$("save").disabled=true;
-  var rec={};
-  NAMES.forEach(function(n,i){rec[i]={nama:n,s:state[i].s,r:(state[i].r||"").trim()}});
-  db.doc("rapat/"+d).set({tanggal:d,records:rec,savedAt:Date.now()}).then(function(){
-    toast("Absensi tersimpan ✓");setStatus("Tersimpan untuk "+nice(d));
-  }).catch(function(err){
-    toast(err&&err.code==="permission-denied"?"Kamu tidak punya izin menyimpan":"Gagal menyimpan");
-  }).then(function(){saving=false;$("save").disabled=false});
-});
-$("reset").addEventListener("click",function(){state={};render();toast("Isian dikosongkan (belum disimpan)")});
-$("tgl").addEventListener("change",load);
-$("prev").addEventListener("click",function(){var v=$("tgl").value||todayStr();$("tgl").value=shift(v,-1);load()});
-$("next").addEventListener("click",function(){var v=$("tgl").value||todayStr();$("tgl").value=shift(v,1);load()});
-
-$("tgl").value=todayStr(); render();
-$("loginBtn").addEventListener("click",function(){ $("loginBtn").disabled=true; $("authStatus").textContent="Membuka login Google..."; auth.signInWithPopup(googleProvider).catch(function(err){ $("authStatus").textContent="Login gagal: "+(err.code||"coba lagi"); }).then(function(){ $("loginBtn").disabled=false; }); });
-$("signout").addEventListener("click",function(){auth.signOut().then(function(){showLogin("Kamu sudah keluar.")});});
-function emailLoginError(code){
-  if(code==="auth/too-many-requests")return "Terlalu banyak percobaan login. Tunggu beberapa saat lalu coba lagi.";
-  if(code==="auth/network-request-failed")return "Koneksi bermasalah. Periksa internet lalu coba lagi.";
-  if(code==="auth/operation-not-allowed")return "Login email belum diaktifkan. Hubungi pengelola.";
-  return "Email atau password salah.";
-}
-$("emailLoginForm").addEventListener("submit",function(e){
-  e.preventDefault();
-  var email=$("loginEmail").value.trim(), pass=$("loginPassword").value;
-  if(!email||!pass){ $("authStatus").textContent="Isi email dan password."; return; }
-  $("emailLoginBtn").disabled=true; $("authStatus").textContent="Sedang login...";
-  auth.signInWithEmailAndPassword(email,pass).catch(function(err){ $("authStatus").textContent=emailLoginError(err&&err.code); }).then(function(){ $("loginPassword").value=""; $("emailLoginBtn").disabled=false; });
-});
-// Akses akun email/password ditentukan oleh Firestore Security Rules (sisi server): baca uji ke koleksi "rapat".
-function checkPasswordAccess(){
-  $("authStatus").textContent="Memeriksa akses...";
-  db.doc("rapat/"+todayStr()).get().then(function(){ showAuthorizedApp(); load(); }).catch(function(err){
-    var msg=err&&err.code==="permission-denied"?"Akun ini tidak diizinkan mengakses absensi.":"Gagal memeriksa akses. Coba lagi.";
-    auth.signOut().then(function(){showLogin(msg)});
-  });
-}
-auth.onAuthStateChanged(function(user){ if(!user){showLogin("");return;} if(user.providerData.some(function(p){return p.providerId==="password"})&&!user.providerData.some(function(p){return p.providerId==="google.com"})){checkPasswordAccess();return;} if((user.email||"").toLowerCase()!==ADMIN_EMAIL){auth.signOut().then(function(){showLogin("Akun ini tidak diizinkan. Login dengan "+ADMIN_EMAIL+".")});return;} showAuthorizedApp(); load(); });
+function summary(){var c={hadir:0,izin:0,sakit:0};for(var k in state)if(state[k].s)c[state[k].s]++;var belum=NAMES.length-c.hadir-c.izin-c.sakit;$("summary").innerHTML='<div><b style="color:var(--hadir)">'+c.hadir+'</b><span>Hadir</span></div><div><b style="color:var(--izin)">'+c.izin+'</b><span>Izin</span></div><div><b style="color:var(--sakit)">'+c.sakit+'</b><span>Sakit</span></div><div><b>'+belum+'</b><span>Belum</span></div>'}
+$("list").addEventListener("click",function(e){var b=e.target.closest("button[data-s]");if(!b)return;var i=b.getAttribute("data-i"),s=b.getAttribute("data-s"),cur=state[i]||{};state[i]={s:s,r:s==="izin"?(cur.r||""):""};render();if(s==="izin"){var f=$("r"+i);if(f)f.focus()}});
+$("list").addEventListener("input",function(e){var i=e.target.getAttribute("data-r");if(i!==null)state[i].r=e.target.value});
+function load(){var d=$("tgl").value;state={};renderLoading();if(!d){isLoading=false;render();setStatus("Pilih tanggal dulu.");return}if(!db){isLoading=false;render();setStatus(nice(d)+" · database belum tersambung (data tidak tersimpan)");return}setStatus("Memuat data "+nice(d)+"...");db.doc("rapat/"+d).get().then(function(snap){if($("tgl").value!==d)return;if(snap.exists){var data=snap.data()||{},rec=data.records||{};for(var k in rec)state[k]={s:rec[k].s,r:rec[k].r||""};isLoading=false;render();setStatus("Sudah tersimpan untuk "+nice(d)+(data.savedAt?" · terakhir "+new Date(data.savedAt).toLocaleString("id-ID"):""))}else{isLoading=false;render();setStatus("Belum ada absensi untuk "+nice(d))}}).catch(function(){if($("tgl").value!==d)return;isLoading=false;render();setStatus("Gagal memuat data. Coba ganti tanggal lagi.")})}
+$("save").addEventListener("click",function(){var d=$("tgl").value;if(!d){toast("Pilih tanggal dulu");return}var belum=NAMES.length-Object.keys(state).filter(function(k){return state[k].s}).length;if(belum>0){toast(belum+" orang belum diisi");return}for(var k in state)if(state[k].s==="izin"&&!(state[k].r||"").trim()){toast("Isi alasan izin untuk "+NAMES[k]);return}if(!db){toast("Database belum tersambung");return}if(saving)return;saving=true;$("save").disabled=true;var rec={};NAMES.forEach(function(n,i){rec[i]={nama:n,s:state[i].s,r:(state[i].r||"").trim()}});db.doc("rapat/"+d).set({tanggal:d,records:rec,savedAt:Date.now()}).then(function(){toast("Absensi tersimpan ✓");setStatus("Tersimpan untuk "+nice(d))}).catch(function(err){toast(err&&err.code==="permission-denied"?"Kamu tidak punya izin menyimpan":"Gagal menyimpan")}).then(function(){saving=false;$("save").disabled=false})});
+$("reset").addEventListener("click",function(){state={};render();toast("Isian dikosongkan (belum disimpan)")});$("tgl").addEventListener("change",load);$("prev").addEventListener("click",function(){var v=$("tgl").value||todayStr();$("tgl").value=shift(v,-1);load()});$("next").addEventListener("click",function(){var v=$("tgl").value||todayStr();$("tgl").value=shift(v,1);load()});
+$("togglePassword").addEventListener("click",function(){var input=$("loginPassword"),show=input.type==="password";input.type=show?"text":"password";this.textContent=show?"Sembunyikan":"Tampilkan";this.setAttribute("aria-label",show?"Sembunyikan password":"Tampilkan password");this.setAttribute("aria-pressed",show?"true":"false")});
+$("tgl").value=todayStr();render();$("loginBtn").addEventListener("click",function(){$("loginBtn").disabled=true;$("authStatus").textContent="Membuka login Google...";auth.signInWithPopup(googleProvider).catch(function(err){$("authStatus").textContent="Login gagal: "+(err.code||"coba lagi")}).then(function(){$("loginBtn").disabled=false})});$("signout").addEventListener("click",function(){auth.signOut().then(function(){showLogin("Kamu sudah keluar.")})});
+function emailLoginError(code){if(code==="auth/too-many-requests")return "Terlalu banyak percobaan login. Tunggu beberapa saat lalu coba lagi.";if(code==="auth/network-request-failed")return "Koneksi bermasalah. Periksa internet lalu coba lagi.";if(code==="auth/operation-not-allowed")return "Login email belum diaktifkan. Hubungi pengelola.";return "Email atau password salah."}
+$("emailLoginForm").addEventListener("submit",function(e){e.preventDefault();var email=$("loginEmail").value.trim(),pass=$("loginPassword").value;if(!email||!pass){$("authStatus").textContent="Isi email dan password.";return}$("emailLoginBtn").disabled=true;$("authStatus").textContent="Sedang login...";auth.signInWithEmailAndPassword(email,pass).catch(function(err){$("authStatus").textContent=emailLoginError(err&&err.code)}).then(function(){$("loginPassword").value="";$("emailLoginBtn").disabled=false})});
+function checkPasswordAccess(){$("authStatus").textContent="Memeriksa akses...";db.doc("rapat/"+todayStr()).get().then(function(){showAuthorizedApp();load()}).catch(function(err){var msg=err&&err.code==="permission-denied"?"Akun ini tidak diizinkan mengakses absensi.":"Gagal memeriksa akses. Coba lagi.";auth.signOut().then(function(){showLogin(msg)})})}
+auth.onAuthStateChanged(function(user){if(!user){showLogin("");return}if(user.providerData.some(function(p){return p.providerId==="password"})&&!user.providerData.some(function(p){return p.providerId==="google.com"})){checkPasswordAccess();return}if((user.email||"").toLowerCase()!==ADMIN_EMAIL){auth.signOut().then(function(){showLogin("Akun ini tidak diizinkan. Login dengan "+ADMIN_EMAIL+".")});return}showAuthorizedApp();load()});
 </script>
 </body>
 </html>
