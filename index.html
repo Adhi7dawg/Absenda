@@ -72,6 +72,13 @@ input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
 .btn:disabled{opacity:.55}
 .toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--primary-ink);color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90%}
 .toast.show{opacity:1}
+
+.skeleton{position:relative;overflow:hidden;background:linear-gradient(90deg, rgba(218,204,190,.85) 25%, rgba(255,255,255,.85) 50%, rgba(218,204,190,.85) 75%);background-size:200% 100%;animation:skeletonShimmer 1.2s infinite linear;border-radius:10px}
+.skeleton-row .skeleton-num{width:28px;height:28px;border-radius:50%}
+.skeleton-row .skeleton-name{display:block;height:16px;width:60%;margin-top:2px}
+.skeleton-row .skeleton-pill{display:block;height:36px;border-radius:10px}
+.skeleton-summary .skeleton-box{display:block;height:50px;border-radius:12px}
+@keyframes skeletonShimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
@@ -127,7 +134,7 @@ input:focus{outline:2px solid var(--primary);border-color:var(--primary)}
 
 <script>
 var NAMES=["Atif Muhanif Mufid","Anisatun Ni'mah","Cindi Anindia","Diyan Pangestu","Fahdi Luftan Muhammad","Hawa Nur Zahwa","Lyla Alit K.","Munadjam A.","May Rahmawati","Nur Adhi Sasongko","Niken Intantri","Nila Juju","Rosella Sabila M.","Seli Sasmita","Vannesa Putri Enjelita","Wahyu Riski S.","Yunita Novianti"];
-var state={}, db=null, saving=false, dbReady=false, ADMIN_EMAIL="xnoob4321@gmail.com";
+var state={}, db=null, saving=false, dbReady=false, ADMIN_EMAIL="xnoob4321@gmail.com", isLoading=false;
 firebase.initializeApp(window.FIREBASE_CONFIG);
 var auth=firebase.auth(), googleProvider=new firebase.auth.GoogleAuthProvider(); db=firebase.firestore();
 function showAuthorizedApp(){ $("authCard").style.display="none"; $("app").style.display="block"; $("actionBar").style.display="block"; }
@@ -141,7 +148,24 @@ function nice(str){var p=str.split("-");return new Date(+p[0],+p[1]-1,+p[2]).toL
 function toast(t){var e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove("show")},2200)}
 function setStatus(t){$("status").textContent=t}
 
+function renderLoading(){
+  isLoading=true;
+  $("summary").innerHTML =
+   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'+ 
+   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'+ 
+   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'+ 
+   '<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>';
+  var rows='';
+  for(var i=0;i<6;i++){
+    rows+='<div class="row skeleton-row"><div class="who"><div class="skeleton skeleton-num"></div><div class="skeleton skeleton-name"></div></div><div class="seg">'+
+      '<span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span>'+
+      '</div></div>';
+  }
+  $("list").innerHTML=rows;
+}
+
 function render(){
+  if(isLoading){renderLoading();return}
   var h="";
   NAMES.forEach(function(n,i){
     var v=state[i]||{};
@@ -185,21 +209,26 @@ $("list").addEventListener("input",function(e){
 
 function load(){
   var d=$("tgl").value;
-  state={};render();
-  if(!d){setStatus("Pilih tanggal dulu.");return}
-  if(!db){setStatus(nice(d)+" · database belum tersambung (data tidak tersimpan)");return}
+  state={};
+  isLoading=true;
+  renderLoading();
+  if(!d){isLoading=false;render();setStatus("Pilih tanggal dulu.");return}
+  if(!db){isLoading=false;render();setStatus(nice(d)+" · database belum tersambung (data tidak tersimpan)");return}
   setStatus("Memuat data "+nice(d)+"...");
   db.doc("rapat/"+d).get().then(function(snap){
     if($("tgl").value!==d)return;
     if(snap.exists){
       var data=snap.data()||{};var rec=data.records||{};
       for(var k in rec){state[k]={s:rec[k].s,r:rec[k].r||""}}
+      isLoading=false;
       render();
       setStatus("Sudah tersimpan untuk "+nice(d)+(data.savedAt?" · terakhir "+new Date(data.savedAt).toLocaleString("id-ID"):""));
     }else{
+      isLoading=false;
+      render();
       setStatus("Belum ada absensi untuk "+nice(d));
     }
-  }).catch(function(){setStatus("Gagal memuat data. Coba ganti tanggal lagi.")});
+  }).catch(function(){isLoading=false;render();setStatus("Gagal memuat data. Coba ganti tanggal lagi.")});
 }
 
 $("save").addEventListener("click",function(){
