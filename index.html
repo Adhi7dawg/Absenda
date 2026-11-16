@@ -758,10 +758,70 @@ input:focus{
   .seg{gap:6px}
   .seg button{font-size:13px;padding:9px 2px}
 }
+
+/* =========================================================
+   PRIVATE ADMIN LOGIN — EDITORIAL SPLIT SCREEN
+   Keeps the existing Firebase auth controls and IDs intact.
+   ========================================================= */
+body.auth-mode{padding-top:72px;background:#172D32;background-image:none;min-height:100svh}
+body.auth-mode .topnav{display:none}
+.login-shell{
+  width:100%;min-height:calc(100svh - 72px);display:grid;grid-template-columns:minmax(0, .92fr) minmax(0, 1.08fr);
+  background:var(--parchment);border-top:1px solid rgba(210,167,71,.22);
+}
+.login-brand{
+  min-height:calc(100svh - 72px);padding:clamp(30px,5vw,76px);background:var(--petrol-deep);color:var(--parchment);
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;border-right:5px solid var(--mustard);
+}
+.login-brand::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 58%,rgba(210,167,71,.08) 58%,rgba(210,167,71,.08) 58.2%,transparent 58.2%);pointer-events:none}
+.login-brand::after{content:"071 / 072";position:absolute;right:22px;top:42%;font:700 clamp(38px,7vw,100px)/1 var(--font-mono);letter-spacing:-.09em;color:rgba(237,228,208,.045);writing-mode:vertical-rl;pointer-events:none}
+.login-brand-mark{display:flex;align-items:center;gap:12px;position:relative;z-index:1}
+.login-brand-mark .mark-box{width:42px;height:42px;display:grid;place-items:center;background:var(--mustard);color:var(--petrol-deep);font:700 13px var(--font-mono);border:1px solid rgba(237,228,208,.35)}
+.login-brand-mark strong{display:block;font:700 11px/1.45 var(--font-mono);letter-spacing:.09em;text-transform:uppercase}
+.login-brand-mark small{display:block;margin-top:3px;color:rgba(237,228,208,.65);font:10px var(--font-mono);letter-spacing:.04em}
+.login-brand-copy{max-width:620px;position:relative;z-index:1;margin:48px 0}
+.login-brand-kicker,.login-brand-foot{font:10px/1.6 var(--font-mono);letter-spacing:.13em;text-transform:uppercase;color:var(--mustard)}
+.login-brand h1{font:600 clamp(46px,6.5vw,94px)/.98 var(--font-display);letter-spacing:-.055em;margin:22px 0 24px;max-width:700px;color:var(--parchment)}
+.login-brand h1 em{color:var(--mustard);font-weight:600}
+.login-brand-copy p{max-width:390px;color:rgba(237,228,208,.72);font-size:clamp(13px,1.2vw,16px);line-height:1.8;margin:0}
+.login-brand-foot{position:relative;z-index:1;color:rgba(210,167,71,.82)}
+.login-access{min-height:calc(100svh - 72px);padding:clamp(28px,6vw,90px);display:flex;align-items:center;justify-content:center;background:#EDE4D0;color:#172D32}
+.auth-card{width:min(100%,500px);max-width:500px;margin:0;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none;text-align:left;position:relative}
+.auth-kicker{color:#7B765F;font-size:10px;letter-spacing:.16em;margin-bottom:14px}
+.auth-card h2{font-size:clamp(30px,3.4vw,44px);line-height:1.08;letter-spacing:-.04em;color:#172D32;margin:0 0 10px}
+.auth-card p{font-size:14px;color:#777568;line-height:1.7;margin:0 0 28px;max-width:420px}
+.auth-btn{border-radius:0;padding:14px 17px;min-height:50px;font-size:13px;letter-spacing:.035em;text-align:left}
+#loginBtn{background:#172D32;color:#EDE4D0;border-color:#172D32}
+#loginBtn:hover{background:#24515A;border-color:#24515A}
+.auth-form{margin-top:24px;padding-top:22px;border-top:1px solid rgba(23,45,50,.18)}
+.auth-form .auth-sep{text-align:left;color:#777568;font-size:10px;letter-spacing:.12em;margin-bottom:18px}
+.auth-form .lbl{color:#344B46;font-size:10px;margin-bottom:7px}
+.auth-form input[type=email],.auth-form input[type=password],.auth-form input[type=text]{background:#F8F5ED;color:#172D32;border:1px solid rgba(23,45,50,.25);border-radius:0;padding:13px 14px;margin-bottom:17px;min-height:48px}
+.auth-form input:focus{border-color:#B58C2E;box-shadow:0 0 0 2px rgba(210,167,71,.2)}
+.password-toggle{border-radius:0;background:#F8F5ED;color:#24515A;border:0;font-size:10px}
+.auth-form .auth-btn{background:#D2A747;color:#172D32;border-color:#D2A747;text-align:left}
+.auth-form .auth-btn:hover{background:#D2A747;filter:brightness(1.05)}
+.auth-card .status{color:#7B765F;font-size:12px;min-height:20px;margin-top:16px}
+body.auth-mode .logos{top:calc(12px + env(safe-area-inset-top,0px));background:#172D32;border-color:rgba(210,167,71,.55)}
+@media(max-width:760px){
+  body.auth-mode{padding-top:70px}
+  .login-shell{min-height:calc(100svh - 70px);grid-template-columns:1fr}
+  .login-brand{min-height:260px;padding:28px 24px 24px;border-right:0;border-bottom:4px solid var(--mustard)}
+  .login-brand-copy{margin:32px 0 28px}
+  .login-brand h1{font-size:clamp(40px,10vw,62px);max-width:540px;margin:14px 0}
+  .login-brand-copy p{font-size:12px;max-width:330px}
+  .login-brand-foot{font-size:9px}
+  .login-access{min-height:unset;padding:38px 24px 52px;align-items:flex-start}
+  .auth-card{max-width:520px}
+  .auth-card h2{font-size:32px}
+  .auth-card p{margin-bottom:22px}
+}
+@media(max-width:380px){.login-brand{min-height:235px;padding:24px 18px 20px}.login-access{padding:30px 18px 42px}.login-brand h1{font-size:38px}}
+@media(prefers-reduced-motion:reduce){.login-brand *{scroll-behavior:auto}}
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script src="firebase-config.js"></script>
 </head>
-<body>
+<body class="auth-mode">
 <div class="logos" role="group" aria-label="Logo Dewan Ambalan"><div class="logo"><img src="img/logo1.png" alt="Logo 1"></div><div class="logo"><img src="img/logo2.png" alt="Logo 2"></div><div class="logo"><img src="img/logo3.png" alt="Logo 3"></div><div class="logo"><img src="img/logo4.png" alt="Logo 4"></div></div>
 
 <nav class="topnav" aria-label="Navigasi utama">
@@ -769,24 +829,40 @@ input:focus{
   <a href="struktur-organisasi.html">Struktur Organisasi →</a>
 </nav>
 
-<section class="auth-card" id="authCard">
-  <span class="auth-kicker">Portal Administrasi</span>
-  <h2>Absensi Rapat Dewan Ambalan</h2>
-  <p>Login dengan akun Google pengurus yang diizinkan mengelola absensi.</p>
-  <button class="auth-btn" id="loginBtn">Login dengan Google</button>
-  <form class="auth-form" id="emailLoginForm" novalidate>
-    <div class="auth-sep">atau login dengan email</div>
-    <label class="lbl" for="loginEmail">Email</label>
-    <input type="email" id="loginEmail" autocomplete="username" required>
-    <label class="lbl" for="loginPassword">Password</label>
-    <div class="password-wrap">
-      <input type="password" id="loginPassword" autocomplete="current-password" required>
-      <button class="password-toggle" id="togglePassword" type="button" aria-label="Tampilkan password" aria-pressed="false">Tampilkan</button>
+<main class="login-shell" id="loginShell">
+  <aside class="login-brand" aria-label="Identitas Dewan Ambalan">
+    <div class="login-brand-mark">
+      <span class="mark-box">DA</span>
+      <span><strong>DEWAN AMBALAN</strong><small>IR. SOETAMI — LAKSAMANA MALAHAYATI</small></span>
     </div>
-    <button class="auth-btn" type="submit" id="emailLoginBtn">Login dengan Email</button>
-  </form>
-  <div class="status" id="authStatus" role="status"></div>
-</section>
+    <div class="login-brand-copy">
+      <span class="login-brand-kicker">ORGANIZATIONAL REGISTRY / GUDEP 11.01.10</span>
+      <h1>Every meeting leaves a <em>record.</em></h1>
+      <p>Official attendance records for the Ambalan council. A private space for discipline, presence, and organizational service.</p>
+    </div>
+    <div class="login-brand-foot">AUTHORIZED ADMINISTRATOR ONLY&nbsp; / &nbsp;EST. 2026</div>
+  </aside>
+  <section class="login-access" aria-label="Administrator sign in">
+    <section class="auth-card" id="authCard">
+      <span class="auth-kicker">RESTRICTED ACCESS / ADMINISTRATOR</span>
+      <h2>Welcome back.</h2>
+      <p>Sign in to manage the official attendance registry of your Ambalan.</p>
+      <button class="auth-btn" id="loginBtn">Continue with Google&nbsp; →</button>
+      <form class="auth-form" id="emailLoginForm" novalidate>
+        <div class="auth-sep">OR SIGN IN WITH EMAIL</div>
+        <label class="lbl" for="loginEmail">Email address</label>
+        <input type="email" id="loginEmail" autocomplete="username" placeholder="admin@example.com" required>
+        <label class="lbl" for="loginPassword">Password</label>
+        <div class="password-wrap">
+          <input type="password" id="loginPassword" autocomplete="current-password" placeholder="Enter your password" required>
+          <button class="password-toggle" id="togglePassword" type="button" aria-label="Tampilkan password" aria-pressed="false">SHOW</button>
+        </div>
+        <button class="auth-btn" type="submit" id="emailLoginBtn">Access system&nbsp; →</button>
+      </form>
+      <div class="status" id="authStatus" role="status"></div>
+    </section>
+  </section>
+</main>
 
 <div class="wrap" id="app">
   <div class="app-topbar">
@@ -825,8 +901,8 @@ var NAMES=["Atif Muhanif Mufid","Anisatun Ni'mah","Cindi Anindia","Diyan Pangest
 var state={},db=null,saving=false,ADMIN_EMAIL="xnoob4321@gmail.com",isLoading=false;
 firebase.initializeApp(window.FIREBASE_CONFIG);var auth=firebase.auth(),googleProvider=new firebase.auth.GoogleAuthProvider();db=firebase.firestore();
 function $(id){return document.getElementById(id)}
-function showAuthorizedApp(){$("authCard").style.display="none";$ ("app").style.display="block";$("actionBar").style.display="block"}
-function showLogin(message){$("authCard").style.display="block";$("app").style.display="none";$("actionBar").style.display="none";$("authStatus").textContent=message||""}
+function showAuthorizedApp(){document.body.classList.remove("auth-mode");$("loginShell").style.display="none";$ ("app").style.display="block";$("actionBar").style.display="block"}
+function showLogin(message){document.body.classList.add("auth-mode");$("loginShell").style.display="grid";$("authCard").style.display="block";$("app").style.display="none";$("actionBar").style.display="none";$("authStatus").textContent=message||""}
 function pad(n){return n<10?"0"+n:""+n}function todayStr(){var d=new Date();return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}function shift(str,delta){var p=str.split("-"),d=new Date(+p[0],+p[1]-1,+p[2]+delta);return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate())}function nice(str){var p=str.split("-");return new Date(+p[0],+p[1]-1,+p[2]).toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}
 function toast(t){var e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(toast.t);toast.t=setTimeout(function(){e.classList.remove("show")},2200)}function setStatus(t){$("status").textContent=t}
 function renderLoading(){isLoading=true;$("summary").innerHTML='<div class="skeleton-summary"><span class="skeleton skeleton-box"></span></div>'.repeat(4);var rows="";for(var i=0;i<6;i++)rows+='<div class="row skeleton-row"><div class="who"><div class="skeleton skeleton-num"></div><div class="skeleton skeleton-name"></div></div><div class="seg"><span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span><span class="skeleton skeleton-pill"></span></div></div>';$("list").innerHTML=rows}
@@ -838,7 +914,7 @@ $("list").addEventListener("input",function(e){var i=e.target.getAttribute("data
 function load(){var d=$("tgl").value;state={};renderLoading();if(!d){isLoading=false;render();setStatus("Pilih tanggal dulu.");return}if(!db){isLoading=false;render();setStatus(nice(d)+" · database belum tersambung (data tidak tersimpan)");return}setStatus("Memuat data "+nice(d)+"...");db.doc("rapat/"+d).get().then(function(snap){if($("tgl").value!==d)return;if(snap.exists){var data=snap.data()||{},rec=data.records||{};for(var k in rec)state[k]={s:rec[k].s,r:rec[k].r||""};isLoading=false;render();setStatus("Sudah tersimpan untuk "+nice(d)+(data.savedAt?" · terakhir "+new Date(data.savedAt).toLocaleString("id-ID"):""))}else{isLoading=false;render();setStatus("Belum ada absensi untuk "+nice(d))}}).catch(function(){if($("tgl").value!==d)return;isLoading=false;render();setStatus("Gagal memuat data. Coba ganti tanggal lagi.")})}
 $("save").addEventListener("click",function(){var d=$("tgl").value;if(!d){toast("Pilih tanggal dulu");return}var belum=NAMES.length-Object.keys(state).filter(function(k){return state[k].s}).length;if(belum>0){toast(belum+" orang belum diisi");return}for(var k in state)if(state[k].s==="izin"&&!(state[k].r||"").trim()){toast("Isi alasan izin untuk "+NAMES[k]);return}if(!db){toast("Database belum tersambung");return}if(saving)return;saving=true;$("save").disabled=true;var rec={};NAMES.forEach(function(n,i){rec[i]={nama:n,s:state[i].s,r:(state[i].r||"").trim()}});db.doc("rapat/"+d).set({tanggal:d,records:rec,savedAt:Date.now()}).then(function(){toast("Absensi tersimpan ✓");setStatus("Tersimpan untuk "+nice(d))}).catch(function(err){toast(err&&err.code==="permission-denied"?"Kamu tidak punya izin menyimpan":"Gagal menyimpan")}).then(function(){saving=false;$("save").disabled=false})});
 $("reset").addEventListener("click",function(){state={};render();toast("Isian dikosongkan (belum disimpan)")});$("tgl").addEventListener("change",load);$("prev").addEventListener("click",function(){var v=$("tgl").value||todayStr();$("tgl").value=shift(v,-1);load()});$("next").addEventListener("click",function(){var v=$("tgl").value||todayStr();$("tgl").value=shift(v,1);load()});
-$("togglePassword").addEventListener("click",function(){var input=$("loginPassword"),show=input.type==="password";input.type=show?"text":"password";this.textContent=show?"Sembunyikan":"Tampilkan";this.setAttribute("aria-label",show?"Sembunyikan password":"Tampilkan password");this.setAttribute("aria-pressed",show?"true":"false")});
+$("togglePassword").addEventListener("click",function(){var input=$("loginPassword"),show=input.type==="password";input.type=show?"text":"password";this.textContent=show?"HIDE":"SHOW";this.setAttribute("aria-label",show?"Sembunyikan password":"Tampilkan password");this.setAttribute("aria-pressed",show?"true":"false")});
 $("tgl").value=todayStr();render();$("loginBtn").addEventListener("click",function(){$("loginBtn").disabled=true;$("authStatus").textContent="Membuka login Google...";auth.signInWithPopup(googleProvider).catch(function(err){$("authStatus").textContent="Login gagal: "+(err.code||"coba lagi")}).then(function(){$("loginBtn").disabled=false})});$("signout").addEventListener("click",function(){auth.signOut().then(function(){showLogin("Kamu sudah keluar.")})});
 function emailLoginError(code){if(code==="auth/too-many-requests")return "Terlalu banyak percobaan login. Tunggu beberapa saat lalu coba lagi.";if(code==="auth/network-request-failed")return "Koneksi bermasalah. Periksa internet lalu coba lagi.";if(code==="auth/operation-not-allowed")return "Login email belum diaktifkan. Hubungi pengelola.";return "Email atau password salah."}
 $("emailLoginForm").addEventListener("submit",function(e){e.preventDefault();var email=$("loginEmail").value.trim(),pass=$("loginPassword").value;if(!email||!pass){$("authStatus").textContent="Isi email dan password.";return}$("emailLoginBtn").disabled=true;$("authStatus").textContent="Sedang login...";auth.signInWithEmailAndPassword(email,pass).catch(function(err){$("authStatus").textContent=emailLoginError(err&&err.code)}).then(function(){$("loginPassword").value="";$("emailLoginBtn").disabled=false})});
