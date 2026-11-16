@@ -466,6 +466,53 @@ body{
   .pcard .rl{font-size:10px}
   .pcard.big .nm{font-size:14.5px}
 }
+
+/* =========================================================
+   STRUCTURE DIRECTORY / MATCHING INSTITUTIONAL DESIGN SYSTEM
+   ========================================================= */
+body{--bg:#142B29;--bg-elev:#F5F0E4;--card:#EAE2CD;--text:#193632;--muted:#60766D;--line:rgba(25,54,50,.18);--line-strong:rgba(25,54,50,.34);background:#142B29;background-image:linear-gradient(rgba(234,226,205,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(234,226,205,.025) 1px,transparent 1px),radial-gradient(circle at 1px 1px,rgba(210,173,76,.10) 1px,transparent 0);background-size:48px 48px,48px 48px,18px 18px;color:#EAE2CD}
+.topnav{max-width:1120px;padding:12px 22px 8px;border-bottom:1px solid rgba(210,173,76,.22)}
+.topnav-tag{color:#B5C5B8;font-size:10px;letter-spacing:.14em}
+.topnav a{border-radius:2px;background:#D2AD4C;color:#193632;border:1px solid #D2AD4C;font:700 10px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 14px}
+.topnav a:hover{background:#EAE2CD;border-color:#EAE2CD;color:#142B29}
+.wrap{max-width:1120px;padding:24px 22px 70px}
+.hero{min-height:190px;padding:34px 38px 32px;margin-bottom:18px;border:1px solid #D2AD4C;border-radius:2px;background:#193A36;box-shadow:8px 8px 0 rgba(210,173,76,.13)}
+.hero::before{width:8px;background:#D2AD4C}
+.hero::after{content:"DA / 071—072";position:absolute;right:28px;bottom:24px;font:10px var(--font-mono);letter-spacing:.16em;color:rgba(210,173,76,.8)}
+.hero-kicker{font-size:10px;letter-spacing:.17em;color:#D2AD4C;margin-bottom:14px}
+.hero h1{font-size:clamp(28px,3.5vw,43px);line-height:1.08;max-width:850px;letter-spacing:-.04em}
+.tabs{gap:0;margin:0 0 28px;padding:5px;background:#EAE2CD;border:1px solid #D2AD4C;border-radius:2px;box-shadow:5px 5px 0 rgba(8,20,18,.18)}
+.tabs button{border-radius:0;color:#60766D;font:700 11px var(--font-mono);letter-spacing:.04em;text-transform:uppercase;padding:14px 12px}
+.tabs button+button{border-left:1px solid rgba(25,54,50,.18)}
+.tabs button[aria-selected="true"]{background:#193A36;color:#EAE2CD;border-color:#193A36;box-shadow:none}
+.panel{padding:4px 0 0}
+.top{margin-bottom:42px}
+.top .pcard{width:min(230px,30vw)}
+.hlink{width:clamp(35px,8vw,100px);background:#D2AD4C}
+.hlink::after{background:#D2AD4C;border-color:#142B29;width:10px;height:10px}
+.top::after{border-color:#D2AD4C}
+.divs{gap:14px;align-items:stretch}
+.col{flex:1 1 0;padding-top:26px}
+.col::before,.col::after{border-color:#D2AD4C}
+.pcard{background:#EAE2CD;color:#193632;border:1px solid rgba(210,173,76,.65);border-radius:2px;padding:10px 10px 13px;box-shadow:4px 4px 0 rgba(8,20,18,.16)}
+.pcard:hover{transform:translateY(-4px);border-color:#D2AD4C;box-shadow:7px 8px 0 rgba(8,20,18,.2)}
+.photo{border-radius:0;background:#D8D0BC;border:1px solid rgba(25,54,50,.25)}
+.pcard .nm{font-size:13px;color:#193632;line-height:1.35}
+.pcard .rl{font-size:9px;letter-spacing:.11em;color:#60766D}
+.pcard.big{background:#193A36;border:1px solid #D2AD4C;border-radius:2px;padding:11px 11px 14px;box-shadow:7px 7px 0 rgba(210,173,76,.14)}
+.pcard.big .nm{font-size:17px;color:#EAE2CD}
+.pcard.big .rl{border-radius:0;background:#D2AD4C;color:#193632;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px}
+.pcard.head{border-top:5px solid #D2AD4C}
+.pcard.head .rl{border-radius:0;background:#193A36;color:#EAE2CD;font-size:9px;letter-spacing:.1em;padding:4px 9px}
+@media(max-width:760px){
+ .topnav{padding:9px 14px 8px}.wrap{padding:17px 14px 50px}
+ .hero{min-height:0;padding:25px 21px 24px;box-shadow:4px 4px 0 rgba(210,173,76,.13)}.hero h1{font-size:clamp(25px,6.5vw,34px)}.hero::after{font-size:8px;right:14px;bottom:12px}
+ .tabs{margin-bottom:22px}.tabs button{font-size:9px;padding:12px 5px}
+ .top{--big:min(40vw,172px);margin-bottom:34px}.top .pcard{width:var(--big)}.hlink{width:24px}
+ .divs{gap:0}.col{padding-top:23px}.col>.pcard.head{width:min(48vw,190px)}
+ .pcard{padding:7px 7px 10px}.pcard .nm{font-size:12px}.pcard.big .nm{font-size:14px}
+}
+
 </style>
 </head>
 <body>

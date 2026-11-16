@@ -818,6 +818,99 @@ body.auth-mode .logos{top:calc(12px + env(safe-area-inset-top,0px));background:#
 }
 @media(max-width:380px){.login-brand{min-height:235px;padding:24px 18px 20px}.login-access{padding:30px 18px 42px}.login-brand h1{font-size:38px}}
 @media(prefers-reduced-motion:reduce){.login-brand *{scroll-behavior:auto}}
+
+/* =========================================================
+   ABSENDA / FULL ADMIN DASHBOARD REDESIGN
+   Swiss grid + restrained neo-brutalist framing + editorial detail.
+   Firebase/auth/attendance markup and Dynamic Island remain untouched.
+   ========================================================= */
+body:not(.auth-mode){
+  --bg:#142B29;--bg-elev:#F5F0E4;--card:#EAE2CD;--card-solid:#F7F2E7;
+  --text:#193632;--muted:#60766D;--line:rgba(25,54,50,.18);--line-strong:rgba(25,54,50,.34);
+  --primary:#193632;--primary-ink:#EAE2CD;--accent:#D2AD4C;
+  background-color:#142B29;
+  background-image:linear-gradient(rgba(234,226,205,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(234,226,205,.025) 1px,transparent 1px),radial-gradient(circle at 1px 1px,rgba(210,173,76,.10) 1px,transparent 0);
+  background-size:48px 48px,48px 48px,18px 18px;
+  color:#EAE2CD;
+}
+body:not(.auth-mode) .topnav{max-width:1120px;padding:12px 22px 8px;border-bottom:1px solid rgba(210,173,76,.22)}
+body:not(.auth-mode) .topnav-tag{color:#B5C5B8;font-size:10px;letter-spacing:.14em}
+body:not(.auth-mode) .topnav a{border-radius:2px;background:#D2AD4C;color:#193632;border:1px solid #D2AD4C;font:700 10px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 14px}
+body:not(.auth-mode) .topnav a:hover{background:#EAE2CD;border-color:#EAE2CD;color:#142B29}
+body:not(.auth-mode) .wrap{max-width:1120px;padding:24px 22px 132px}
+body:not(.auth-mode) .app-topbar{margin:0 0 16px;padding:0 2px}
+body:not(.auth-mode) .session-badge{color:#A8C0B3;font-size:10px;letter-spacing:.14em}
+body:not(.auth-mode) .session-badge .dot{width:8px;height:8px;box-shadow:0 0 0 4px rgba(134,216,183,.12)}
+body:not(.auth-mode) #signout{border-radius:2px;background:transparent;color:#EAE2CD;border:1px solid rgba(234,226,205,.42);font:700 10px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;padding:9px 14px}
+body:not(.auth-mode) #signout:hover{background:#D2AD4C;border-color:#D2AD4C;color:#193632}
+body:not(.auth-mode) .hero{min-height:230px;padding:34px 38px 32px;margin-bottom:18px;border:1px solid #D2AD4C;border-radius:2px;background:#193A36;box-shadow:8px 8px 0 rgba(210,173,76,.13)}
+body:not(.auth-mode) .hero::before{width:8px;background:#D2AD4C}
+body:not(.auth-mode) .hero::after{content:"DA / 071—072";right:28px;bottom:24px;font-size:11px;letter-spacing:.16em;color:rgba(210,173,76,.8)}
+body:not(.auth-mode) .hero-meta{font-size:10px;letter-spacing:.17em;color:#D2AD4C;margin-bottom:14px}
+body:not(.auth-mode) .hero h1{font-size:clamp(30px,4.4vw,52px);line-height:1.02;max-width:760px;letter-spacing:-.045em;margin-bottom:12px}
+body:not(.auth-mode) .hero p{font-size:14px;max-width:620px;color:rgba(234,226,205,.76)}
+body:not(.auth-mode) .card{background:#EAE2CD;color:#193632;border:1px solid rgba(210,173,76,.72);border-radius:2px;padding:22px 24px;margin-bottom:16px;box-shadow:5px 5px 0 rgba(8,20,18,.20)}
+body:not(.auth-mode) label.lbl{color:#526C62;font-size:10px;letter-spacing:.15em;margin-bottom:12px}
+body:not(.auth-mode) .daterow{gap:10px}
+body:not(.auth-mode) input[type=date],body:not(.auth-mode) input[type=text]{background:#F7F2E7;color:#193632;border:1px solid rgba(25,54,50,.38);border-radius:2px;min-height:48px;padding:12px 14px}
+body:not(.auth-mode) input:focus{border-color:#B58C2E;box-shadow:0 0 0 3px rgba(210,173,76,.2)}
+body:not(.auth-mode) .nav{width:48px;height:48px;border-radius:2px;background:#193A36;color:#EAE2CD;border:1px solid #193A36;font-size:22px}
+body:not(.auth-mode) .nav:hover{background:#D2AD4C;color:#193632;border-color:#D2AD4C}
+body:not(.auth-mode) #status{font-size:12px;color:#60766D;margin-top:12px;font-family:var(--font-mono)}
+body:not(.auth-mode) .summary{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:18px 20px}
+body:not(.auth-mode) .summary::before{content:"ATTENDANCE OVERVIEW / LIVE REGISTER";grid-column:1/-1;text-align:left;font:10px var(--font-mono);letter-spacing:.14em;color:#60766D;padding:0 2px 5px}
+body:not(.auth-mode) .summary div{border-radius:2px;padding:18px 10px 15px;background:#193A36;border:1px solid rgba(25,54,50,.45);border-bottom:5px solid #60766D;min-height:104px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+body:not(.auth-mode) .summary div:nth-child(2){border-bottom-color:#D2AD4C}
+body:not(.auth-mode) .summary div:nth-child(3){border-bottom-color:#C77C75}
+body:not(.auth-mode) .summary div:nth-child(4){border-bottom-color:#86A99B}
+body:not(.auth-mode) .summary b{font-size:clamp(28px,3vw,38px);line-height:1;color:#EAE2CD;font-variant-numeric:tabular-nums}
+body:not(.auth-mode) .summary div:nth-child(1) b{color:#86D8B7}
+body:not(.auth-mode) .summary div:nth-child(2) b{color:#D2AD4C}
+body:not(.auth-mode) .summary div:nth-child(3) b{color:#D88C83}
+body:not(.auth-mode) .summary span{color:#B6C9BE;font-size:9px;letter-spacing:.13em;margin-top:9px}
+body:not(.auth-mode) #list.card{padding:20px 24px 10px}
+body:not(.auth-mode) #list.card::before{content:"MEMBER REGISTER";display:block;margin:0 0 8px;padding:0 0 14px;border-bottom:2px solid #193A36;color:#526C62;font:700 10px var(--font-mono);letter-spacing:.16em}
+body:not(.auth-mode) .row{display:grid;grid-template-columns:minmax(220px,.9fr) minmax(300px,1.1fr);align-items:center;gap:18px;padding:15px 0;border-bottom:1px solid rgba(25,54,50,.18)}
+body:not(.auth-mode) .who{margin:0;gap:13px}
+body:not(.auth-mode) .num{width:34px;height:34px;border-radius:2px;background:#193A36;border:1px solid #D2AD4C;color:#D2AD4C;font-size:10px}
+body:not(.auth-mode) .name{font-size:14px;font-weight:700;color:#193632;letter-spacing:-.02em}
+body:not(.auth-mode) .seg{gap:6px}
+body:not(.auth-mode) .seg button{min-height:42px;border-radius:2px;background:#F7F2E7;border:1px solid rgba(25,54,50,.35);color:#60766D;font-size:11px;font-weight:700;letter-spacing:.015em}
+body:not(.auth-mode) .seg button:hover{border-color:#193A36;color:#193A36;background:#F1E8D6}
+body:not(.auth-mode) .seg button.on[data-s=hadir]{background:#D8E9DF;color:#205A43;border-color:#205A43}
+body:not(.auth-mode) .seg button.on[data-s=izin]{background:#F4E7C7;color:#805D14;border-color:#B58C2E}
+body:not(.auth-mode) .seg button.on[data-s=sakit]{background:#F1DCD6;color:#943F35;border-color:#B45E53}
+body:not(.auth-mode) .reason{grid-column:2;background:#F4EBD8;border-left:4px solid #D2AD4C;border-radius:0;padding:12px 14px}
+body:not(.auth-mode) .reason label{color:#805D14}
+body:not(.auth-mode) .bar{background:#142B29;border-top:1px solid rgba(210,173,76,.65);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px))}
+body:not(.auth-mode) .bar .in{max-width:1080px;gap:12px}
+body:not(.auth-mode) .btn{border-radius:2px;min-height:52px;background:#D2AD4C;border:1px solid #D2AD4C;color:#193632;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+body:not(.auth-mode) .btn.sec{background:transparent;border:1px solid rgba(234,226,205,.48);color:#EAE2CD}
+body:not(.auth-mode) .btn.sec:hover{background:#EAE2CD;color:#193632}
+body:not(.auth-mode) .toast{border-radius:2px;background:#EAE2CD;color:#193632;border:1px solid #D2AD4C;font-family:var(--font-mono);font-size:11px}
+body:not(.auth-mode) .skeleton{border-radius:2px}
+@media(max-width:760px){
+  body:not(.auth-mode) .topnav{padding:9px 14px 8px}
+  body:not(.auth-mode) .wrap{padding:17px 14px 118px}
+  body:not(.auth-mode) .hero{min-height:0;padding:25px 21px 24px;box-shadow:4px 4px 0 rgba(210,173,76,.13)}
+  body:not(.auth-mode) .hero h1{font-size:clamp(27px,7.4vw,38px);max-width:500px}
+  body:not(.auth-mode) .hero p{font-size:12px;line-height:1.7}
+  body:not(.auth-mode) .card{padding:17px 16px}
+  body:not(.auth-mode) .summary{gap:7px;padding:14px 12px}
+  body:not(.auth-mode) .summary div{min-height:88px;padding:13px 4px 11px}
+  body:not(.auth-mode) .summary b{font-size:27px}
+  body:not(.auth-mode) .summary span{font-size:8px;letter-spacing:.08em}
+  body:not(.auth-mode) #list.card{padding:17px 16px 8px}
+  body:not(.auth-mode) .row{grid-template-columns:1fr;gap:10px;padding:14px 0}
+  body:not(.auth-mode) .who{margin-bottom:0}
+  body:not(.auth-mode) .reason{grid-column:1}
+  body:not(.auth-mode) .seg button{min-height:44px;font-size:11px}
+  body:not(.auth-mode) .bar{padding-left:12px;padding-right:12px}
+  body:not(.auth-mode) .bar .in{gap:8px}
+  body:not(.auth-mode) .btn{min-height:50px;padding:10px 12px;font-size:10px}
+}
+@media(max-width:380px){body:not(.auth-mode) .summary{gap:5px;padding:12px 9px}body:not(.auth-mode) .summary div{min-height:80px}body:not(.auth-mode) .summary b{font-size:23px}body:not(.auth-mode) .seg{gap:4px}body:not(.auth-mode) .seg button{font-size:10px}}
+
 </style>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script><script src="firebase-config.js"></script>
 </head>
